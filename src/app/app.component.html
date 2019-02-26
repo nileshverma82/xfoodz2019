@@ -1,1 +1,8 @@
-    <router-outlet></router-outlet>
+<!-- <app-shell><router-outlet></router-outlet></app-shell>    -->
+<div>
+<mat-progress-spinner 
+    style="position: fixed; bottom:20px; right:20px"
+    *ngIf="isLoading" 
+    mode="indeterminate"></mat-progress-spinner>
+<router-outlet></router-outlet>
+</div>

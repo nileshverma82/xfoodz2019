@@ -6,8 +6,9 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatProgressSpinnerModule } from '@angular/material';
 import { ShellComponent } from './shell/shell.component';
+import { MaterialModule } from "src/app/material/material.module";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,9 @@ import { ShellComponent } from './shell/shell.component';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatProgressSpinnerModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

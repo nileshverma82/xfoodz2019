@@ -5,9 +5,9 @@
       [opened]="!(isHandset$ | async)">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="#">Link 1</a>
-      <a mat-list-item href="#">Link 2</a>
-      <a mat-list-item href="#">Link 3</a>
+      <a  *ngFor="let nav of navList" mat-list-item href="#">
+        <mat-icon>{{nav.menuIcon}}</mat-icon>
+          {{nav.menuName}}</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -20,8 +20,10 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>xfoodz2019</span>
+      <span>Foodz9</span>
     </mat-toolbar>
     <!-- Add Content Here -->
+    <!-- <ng-content></ng-content> -->
+    <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
