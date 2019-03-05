@@ -5,6 +5,7 @@ import { DetailComponent } from './detail/detail.component';
 import { ManageComponent } from './manage/manage.component';
 import { Routes } from "@angular/router";
 import { RouterModule } from "@angular/router";
+import { CanDeactivateGuard } from "src/app/core/can-deactivate.guard";
 
 
 
@@ -13,9 +14,9 @@ const productRoutes: Routes = [
     path: 'manage/:id',
     component: ManageComponent,
     data: { title: 'PRODUCT_MANAGE_PAGE' },
-  //  resolve: { product: ProductResolver },
+    //  resolve: { product: ProductResolver },
     // canActivate: [AuthSocialGuard],
-    // canDeactivate: [CanDeactivateGuard],
+    canDeactivate: [CanDeactivateGuard]
   },
   {
     path: 'detail/:id',

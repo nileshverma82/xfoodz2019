@@ -8,8 +8,8 @@ const routes: Routes = [
     children: [
       { path: 'app-tray', loadChildren: './tray/tray.module#TrayModule' },
       { path: 'checkout', loadChildren: './checkout/checkout.module#CheckoutModule' },
-      { path: 'chat', loadChildren: './app-chat/app-chat.module#AppChatModule' },
-      { path: 'search', loadChildren: './app-search/app-search.module#AppSearchModule' },
+     // { path: 'chat', loadChildren: './app-chat/app-chat.module#AppChatModule' },
+      { path: 'search', loadChildren: './search/search.module#SearchModule' },
       { path: 'app-user', loadChildren: './app-user/app-user.module#AppUserModule' },
       { path: '', loadChildren: './product/product.module#ProductModule' },
 

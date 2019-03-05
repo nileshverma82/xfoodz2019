@@ -5,7 +5,11 @@
       [opened]="!(isHandset$ | async)">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a  *ngFor="let nav of navList" mat-list-item href="#">
+      <a  
+        *ngFor="let nav of navList"
+        [routerLink]="nav.menuRoute"
+        (click)="drawer.close()"
+        mat-list-item>
         <mat-icon>{{nav.menuIcon}}</mat-icon>
           {{nav.menuName}}</a>
     </mat-nav-list>

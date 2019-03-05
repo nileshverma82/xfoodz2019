@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { of } from "rxjs";
 
 @Component({
   selector: 'app-manage',
@@ -10,6 +11,10 @@ export class ManageComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  canDeactivate(): boolean {
+    return false;
   }
 
 }

@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 import { TrayComponent } from './tray/tray.component';
 import { Route } from "@angular/router";
 import { RouterModule } from "@angular/router";
+import { Routes } from "@angular/router";
 
-const TrayRoutes: Route  = [
+const TrayRoutes: Routes  = [
 
   {
     path: '',
     component: TrayComponent,
-    data: { title: 'PRODUCT_LIST_PAGE' },
+    data: { title: 'PRODUCT_LIST_PAGE' }
     // canActivate: [AuthGuard]
     // resolve: { products: ProductListResolver}
   }

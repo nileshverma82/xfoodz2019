@@ -9,6 +9,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatProgressSpinnerModule } from '@angular/material';
 import { ShellComponent } from './shell/shell.component';
 import { MaterialModule } from "src/app/material/material.module";
+import { CoreModule } from "src/app/core/core.module";
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { MaterialModule } from "src/app/material/material.module";
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    CoreModule,
     SharedModule,
     LayoutModule,
     MatToolbarModule,

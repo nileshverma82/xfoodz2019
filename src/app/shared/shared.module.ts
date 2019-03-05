@@ -1,18 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import { DialogConfirmComponent } from './dialog-confirm/dialog-confirm.component';
+import { MaterialModule } from "src/app/material/material.module";
 
 @NgModule({
-  declarations: [],
+  declarations: [DialogConfirmComponent],
   imports: [
     CommonModule,
     LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule
+    MaterialModule
   ],
   exports: []
 })

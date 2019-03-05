@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  isLoading = true;
+  isLoading = false;
   title = 'xfoodz2019';
 }
