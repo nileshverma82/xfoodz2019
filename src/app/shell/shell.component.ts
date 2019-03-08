@@ -20,9 +20,9 @@ export class ShellComponent {
   navList = [
     { menuIcon: 'home', menuName: 'Home', menuRoute: '/' },
     { menuIcon: 'assignment', menuName: 'My Orders', menuRoute: '/checkout' },
-    { menuIcon: 'shopping_cart', menuName: 'Cart', menuRoute: '/app-cart' },
+    { menuIcon: 'shopping_cart', menuName: 'Cart', menuRoute: '/tray' },
     { menuIcon: 'favorite', menuName: 'Wish List', menuRoute: '/wishlist' },
-    { menuIcon: 'account_circle', menuName: 'Profile', menuRoute: '/app-user' },
+    { menuIcon: 'account_circle', menuName: 'Profile', menuRoute: '/user' },
     { menuIcon: 'language', menuName: 'Language', menuRoute: './' },
     { menuIcon: 'android', menuName: 'Download App', menuRoute: './' },
     { menuIcon: 'help', menuName: 'Help', menuRoute: './' },

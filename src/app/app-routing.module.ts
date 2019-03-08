@@ -6,11 +6,11 @@ const routes: Routes = [
   {
     path: '', component: ShellComponent, data: { title: 'APP_SHELL_PAGE' },
     children: [
-      { path: 'app-tray', loadChildren: './tray/tray.module#TrayModule' },
+      { path: 'tray', loadChildren: './tray/tray.module#TrayModule' },
       { path: 'checkout', loadChildren: './checkout/checkout.module#CheckoutModule' },
-     // { path: 'chat', loadChildren: './app-chat/app-chat.module#AppChatModule' },
+      { path: 'chat', loadChildren: './chat/chat.module#ChatModule' },
       { path: 'search', loadChildren: './search/search.module#SearchModule' },
-      { path: 'app-user', loadChildren: './app-user/app-user.module#AppUserModule' },
+      { path: 'user', loadChildren: './user/user.module#UserModule' },
       { path: '', loadChildren: './product/product.module#ProductModule' },
 
     ]

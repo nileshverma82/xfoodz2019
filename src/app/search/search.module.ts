@@ -1,11 +1,27 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SearchComponent } from './search/search.component';
+import { Routes } from "@angular/router";
+import { RouterModule } from "@angular/router";
+
+
+const searchRoute: Routes = [
+  {
+    path: '',
+    component: SearchComponent,
+    data: { title: 'PRODUCT_MANAGE_PAGE' },
+    //  resolve: { product: ProductResolver },
+    // canActivate: [AuthSocialGuard],
+    // canDeactivate: [CanDeactivateGuard]
+  }
+]
 
 @NgModule({
   declarations: [SearchComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule.forChild(searchRoute)
+
   ]
 })
 export class SearchModule { }
