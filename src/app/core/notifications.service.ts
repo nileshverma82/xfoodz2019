@@ -17,6 +17,7 @@ export class NotificationsService {
     console.log('from Notification service');
     const snackBarConfig = new MatSnackBarConfig();
     snackBarConfig.data = {message};
+    snackBarConfig.duration = 900;
     const snackBarRef = this.snackBar.openFromComponent(SnackBarComponent, snackBarConfig);
 
     return of(null);
