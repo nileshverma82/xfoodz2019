@@ -1,11 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MaterialModule } from "src/app/material/material.module";
+
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { ListComponent } from './list/list.component';
 import { DetailComponent } from './detail/detail.component';
 import { ManageComponent } from './manage/manage.component';
 import { Routes } from "@angular/router";
 import { RouterModule } from "@angular/router";
 import { CanDeactivateGuard } from "src/app/core/can-deactivate.guard";
+import { ReactiveFormsModule } from "@angular/forms";
+import { ProductService } from "src/app/product/product.service";
+import { ProductCardComponent } from './product-card/product-card.component';
 
 
 
@@ -35,11 +41,15 @@ const productRoutes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ListComponent, DetailComponent, ManageComponent],
+  declarations: [ListComponent, DetailComponent, ManageComponent, ProductCardComponent],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
+    MaterialModule,
     RouterModule.forChild(productRoutes)
-  ]
+  ],
+  providers: [ProductService],
+
 })
 
 export class ProductModule { }
