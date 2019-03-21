@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DialogConfirmService } from './dialog-confirm.service';
+import { DbService } from './db.service';
 
-describe('DialogConfirmService', () => {
+describe('DbService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: DialogConfirmService = TestBed.get(DialogConfirmService);
+    const service: DbService = TestBed.get(DbService);
     expect(service).toBeTruthy();
   });
 });

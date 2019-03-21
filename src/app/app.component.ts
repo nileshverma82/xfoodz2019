@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router, NavigationStart, NavigationEnd, NavigationCancel, NavigationError, Event } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,7 +7,25 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  isLoading: boolean;
 
-  isLoading = false;
-  title = 'xfoodz2019';
+  constructor(private router: Router) {
+    this.isLoading = false;
+    this.router.events.subscribe((e: Event) => {
+      this.checkRouterEvent(e);
+    });
+  }
+
+  checkRouterEvent(e: Event): void {
+    if (e instanceof NavigationStart) {
+      this.isLoading = true;
+    }
+    if (
+      e instanceof NavigationEnd ||
+      e instanceof NavigationCancel ||
+      e instanceof NavigationError
+    ) {
+      this.isLoading = false;
+    }
+  }
 }

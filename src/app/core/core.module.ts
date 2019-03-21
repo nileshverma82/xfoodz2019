@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NotificationsService } from "src/app/core/notifications.service";
-import { DialogConfirmService } from "src/app/core/dialog-confirm.service";
+import { NotificationsService } from 'src/app/core/notifications.service';
+
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule
   ],
-  providers: [NotificationsService, DialogConfirmService]
+  providers: [NotificationsService]
 })
 export class CoreModule { }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from "src/app/product/product.service";
-import { Observable } from "rxjs";
-import { Fooditem } from "src/app/core/model";
+import { Observable } from 'rxjs';
+import { Fooditem } from 'src/app/core/model';
+import { DbService } from 'src/app/core/db.service';
 
 @Component({
   selector: 'app-list',
@@ -10,13 +10,11 @@ import { Fooditem } from "src/app/core/model";
 })
 export class ListComponent implements OnInit {
 
-  fooditem: Fooditem;
-  fooditemlist: Observable<Fooditem[]>;
-  constructor(private productService: ProductService) { }
+  fooditem$: Observable<Fooditem[]>;
+  constructor(private db: DbService) { }
 
   ngOnInit() {
-    this.fooditemlist = this.productService.getProductList();
-    console.log(this.fooditemlist)
+    this.fooditem$ = this.db.getProductList();
   }
 
 }
