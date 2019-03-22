@@ -1,10 +1,11 @@
 <div 
   fxLayout="row wrap" 
-  fxLayout.xs="column">
+  fxLayout.xs="column"
+  fxLayoutAlign="space-around">
   <app-product-card fxFlex="0 1 40" 
     *ngFor="let fooditem of fooditem$|async" 
     [fooditem]="fooditem" 
     routerLink="/detail/{{fooditem.id}}">
 </app-product-card>
-  <app-fab-action fabIcon="search" (click)="navigateToSearchPage()"></app-fab-action>
+<app-fab-action fabIcon="search" (click)="navigateToSearchPage()"></app-fab-action>
 </div>

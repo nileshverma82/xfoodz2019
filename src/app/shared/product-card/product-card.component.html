@@ -1,4 +1,4 @@
-<mat-card fxLayout="column" *ngIf="fooditem as fi" style="margin-top: 2px">
+<mat-card *ngIf="fooditem as fi" style="margin-top: 2px">
     <div *ngIf="fooditem.images[0].url as previewURL" class="productImg">
       <img mat-card-image [src]="previewURL">
     </div>

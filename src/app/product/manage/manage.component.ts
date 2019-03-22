@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { DialogService } from 'src/app/core/dialog.service';
 
 @Component({
   selector: 'app-manage',
@@ -6,14 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./manage.component.scss']
 })
 export class ManageComponent implements OnInit {
+  constructor(private dialogService: DialogService) {}
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
+  canDeactivate(): Observable<boolean> | boolean {
+    return this.dialogService.openDialog('Discard Changes?');
   }
-
-  canDeactivate(): boolean {
-    return false;
-  }
-
 }
