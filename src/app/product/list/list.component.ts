@@ -17,4 +17,8 @@ export class ListComponent implements OnInit {
     this.fooditem$ = this.db.getProductList();
   }
 
+  navigateToSearchPage() {
+    console.log('TODO: Navigate to search page');
+  }
+
 }

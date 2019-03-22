@@ -1,38 +1,29 @@
-<mat-card *ngIf="fooditem as fi" class="productBox">
-
-  <div *ngIf="fooditem.images[0].url as previewURL" class="productImg">
-    <img mat-card-image [src]="previewURL">
-    <span class="price">CAD {{fi.price}}</span>
-  </div>
-
-  <div fxLayout="row wrap">
-    <h3 class="productName" fxFlex="0 1 100" [style.color]="fi.isNonVeg? 'red':'green'">{{fi.title}}</h3>
-  </div>
-
+<mat-card fxLayout="column" *ngIf="fooditem as fi" style="margin-top: 2px">
+    <div *ngIf="fooditem.images[0].url as previewURL" class="productImg">
+      <img mat-card-image [src]="previewURL">
+    </div>
+        <div fxLayout="rwo wrap" fxLayoutAlign="space-between">
+          <span class="mat-h2" [style.color]="fi.isNonVeg? 'red':'green'">{{fi.title}}</span>
+          <span class="mat-h2">[CAD-{{fi.price}}]</span>
+        </div>
   <mat-card-content>
-    <h4>[{{fi.category}}] . [{{fi.cuisine}}]</h4>
-    <h4>Availability: [{{ fi.availability }}]</h4>
+    <span class="mat-h3">[ {{fi.category}} ] . [ {{fi.cuisine}} ]</span>
+    <br>
+    <span class="mat-h3">Availability: [ {{ fi.availability }} ]</span>
   </mat-card-content>
 
-  <div fxLayout="row wrap">
-    <h4>
-      <mat-icon>room_service</mat-icon>
-    </h4>
-    <h4>{{fi.serving}} persons</h4>
-
-    <span class="spacer"></span>
-
-    <h4>
-      <mat-icon>schedule</mat-icon>
-    </h4>
-    <h4> {{fi.orderTime}} {{fi.orderType == 'instant'? 'minutes':'hours'}} </h4>
-
-    <span class="spacer"></span>
-
-    <h4>
-      <mat-icon>place</mat-icon>
-    </h4>
-    <h4>1.0 km</h4>
+  <div fxLayout="row wrap" fxLayoutAlign="space-between">
+    <div>
+      <mat-icon>room_service</mat-icon> 
+      {{fi.serving}} persons
+    </div>
+    <div>
+      <mat-icon>schedule</mat-icon> 
+      {{fi.orderTime}} {{fi.orderType == 'instant'? 'minutes':'hours'}}
+    </div>
+    <div>
+      <mat-icon>place</mat-icon> 
+      1.0 km
+    </div>
   </div>
-
 </mat-card>

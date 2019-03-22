@@ -1,5 +1,7 @@
 <div>
   <app-product-card [fooditem]="fooditem"></app-product-card>
-  <!-- <app-fab-action [fabIcon]="fooditem.createdBy.id === (this.auth.currUser$|async)?.uid?'edit':'add'"
-    (fabActionEvent)="onClickFab($event)"></app-fab-action> -->
+  <app-fab-action 
+    [fabIcon]="fooditem.createdBy.id === (this.auth.currUser$|async)?.uid?'edit':'add'"
+    (fabActionEvent)="onClickFab($event)">
+  </app-fab-action>
 </div>
