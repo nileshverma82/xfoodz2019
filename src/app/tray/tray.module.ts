@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TrayComponent } from './tray/tray.component';
-import { Route } from "@angular/router";
-import { RouterModule } from "@angular/router";
-import { Routes } from "@angular/router";
+import { Route } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { Routes } from '@angular/router';
 
 const TrayRoutes: Routes  = [
 
@@ -14,7 +14,8 @@ const TrayRoutes: Routes  = [
     // canActivate: [AuthGuard]
     // resolve: { products: ProductListResolver}
   }
-]
+];
+
 @NgModule({
   declarations: [TrayComponent],
   imports: [

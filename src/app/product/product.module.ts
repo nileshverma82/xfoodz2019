@@ -11,6 +11,7 @@ import { ListComponent } from './list/list.component';
 import { ManageComponent } from './manage/manage.component';
 import { ProductResolver } from './product.resolver';
 
+
 const productRoutes: Routes = [
   {
     path: 'manage/:id',

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserComponent } from './user/user.component';
-import { Routes } from "@angular/router";
-import { RouterModule } from "@angular/router";
+import { Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 const userRoute: Routes = [
   {
@@ -13,7 +13,7 @@ const userRoute: Routes = [
     // canActivate: [AuthSocialGuard],
     // canDeactivate: [CanDeactivateGuard]
   }
-]
+];
 
 @NgModule({
   declarations: [UserComponent],
