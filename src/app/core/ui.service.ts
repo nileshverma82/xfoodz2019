@@ -16,16 +16,12 @@ export interface AppToolbar {
   providedIn: 'root'
 })
 export class UIService {
+
   defaultToolbar: AppToolbar = {
     pageTitle: 'Foodz9',
     showSideNavToggleIcon: true,
     showNewProductIcon: true,
-    showAppTrayIcon: true,
-  };
-
-  cancelToolbar: AppToolbar = {
-    pageTitle: 'Fooditem details!',
-    showCancelIcon: true
+    showAppTrayIcon: true
   };
 
   appToolBar$ = new BehaviorSubject<AppToolbar>(this.defaultToolbar);
@@ -51,7 +47,6 @@ export class UIService {
         mergeMap(route => route.data)
       )
       .subscribe(routerData => {
-        // console.log('Router data: ', routerData);
         this.setPageLayout(routerData);
       });
   }

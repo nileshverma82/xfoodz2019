@@ -36,7 +36,7 @@
         </a>
 
 
-    <a *ngIf="customeToobar.showCancelIcon" mat-icon-button routerLink="/">
+    <a *ngIf="customeToobar.showCancelIcon" mat-icon-button (click)="goBack()">
       <mat-icon>clear</mat-icon>
     </a>
 

@@ -17,7 +17,7 @@ const productRoutes: Routes = [
     path: 'manage/:id',
     component: ManageComponent,
     data: { title: 'PRODUCT_MANAGE_PAGE' },
-    //  resolve: { product: ProductResolver },
+    resolve: { product: ProductResolver },
     // canActivate: [AuthSocialGuard],
     canDeactivate: [CanDeactivateGuard]
   },

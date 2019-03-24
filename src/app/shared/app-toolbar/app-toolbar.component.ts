@@ -43,13 +43,12 @@ export class AppToolbarComponent implements OnInit, OnChanges {
   }
 
   clickedCancel() {
-    console.log('ClickedCancel()');
-    this.route.navigate(['/']);
+    // this.route.navigate(['/']);
+    this.location.back();
   }
 
   goBack() {
     this.location.back();
-    console.log('triggered from goBack icon');
   }
 
 }
