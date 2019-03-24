@@ -1,8 +1,9 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { MaterialModule } from '../material/material.module';
+import { SharedModule } from '../shared/shared.module';
 import { SearchComponent } from './search/search.component';
-import { Routes } from '@angular/router';
-import { RouterModule } from '@angular/router';
 
 
 const searchRoute: Routes = [
@@ -17,6 +18,8 @@ const searchRoute: Routes = [
   declarations: [SearchComponent],
   imports: [
     CommonModule,
+    MaterialModule,
+    SharedModule,
     RouterModule.forChild(searchRoute)
 
   ]

@@ -1,11 +1,8 @@
 import { Location } from '@angular/common';
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
-// import { AppCartService } from '../../app-cart/app-cart.service';
-import { UIService } from 'src/app/core/ui.service';
 import { Router } from '@angular/router';
+import { UIService } from 'src/app/core/ui.service';
 // import { AppCartService } from '../../app-cart/app-cart.service';
-
-
 
 @Component({
   selector: 'app-toolbar',
@@ -40,11 +37,6 @@ export class AppToolbarComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
 
-  }
-
-  clickedCancel() {
-    // this.route.navigate(['/']);
-    this.location.back();
   }
 
   goBack() {
