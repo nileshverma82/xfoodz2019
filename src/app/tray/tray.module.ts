@@ -10,7 +10,7 @@ const TrayRoutes: Routes  = [
   {
     path: '',
     component: TrayComponent,
-    data: { title: 'PRODUCT_LIST_PAGE' }
+    data: { title: 'APP_TRAY_PAGE' }
     // canActivate: [AuthGuard]
     // resolve: { products: ProductListResolver}
   }

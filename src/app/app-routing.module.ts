@@ -12,7 +12,6 @@ const routes: Routes = [
       { path: 'search', loadChildren: './search/search.module#SearchModule' },
       { path: 'user', loadChildren: './user/user.module#UserModule' },
       { path: '', loadChildren: './product/product.module#ProductModule' },
-
     ]
   },
   // { path: 'admin', loadChildren: './admin/admin.module#AdminModule' },
