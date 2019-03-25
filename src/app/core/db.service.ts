@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import * as firebase from 'firebase/app';
-import { Observable, of } from 'rxjs';
+import { Observable, of, BehaviorSubject , combineLatest} from 'rxjs';
 import { AppUser, Fooditem } from './models';
 import { SnackbarNotificationService } from './snackbar-notification.service';
-import { first, tap } from 'rxjs/operators';
+import { first, tap, switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +15,21 @@ export class DbService {
   private dbAppTrayRoot = 'apptray';
   private dbProductRoot = 'products';
 
+  // Product filters...
+  isNonVegFilter$: BehaviorSubject<boolean|null>;
+  categoryFilter$: BehaviorSubject<string|null>;
+  cuisineFilter$: BehaviorSubject<string|null>;
+  fooditems$: Observable<Fooditem[]>;
+
   constructor(
     private afs: AngularFirestore,
     private notify: SnackbarNotificationService
-  ) {}
+  ) {
+    this.isNonVegFilter$ = new BehaviorSubject(null);
+    this.categoryFilter$ = new BehaviorSubject(null);
+    this.cuisineFilter$ = new BehaviorSubject(null);
+    this.fooditems$ = this.getProductList();
+  }
 
   // ..... Firebase getter methods ..... //
   get newFirebaseDocumentKey(): string {
@@ -29,10 +40,37 @@ export class DbService {
     return firebase.firestore.FieldValue.serverTimestamp();
   }
 
-  // ..... Products ..... //
+
   getProductList(): Observable<Fooditem[]> {
-    return this.afs.collection<Fooditem>
-      (this.dbProductRoot, ref => ref.orderBy('createdAt', 'desc')).valueChanges();
+    const filter$ = combineLatest(this.isNonVegFilter$, this.cuisineFilter$, this.categoryFilter$);
+    return filter$.pipe(
+      switchMap( ([dietFilter, cuisineFilter, categoryFilter]) =>
+        this.afs.collection<Fooditem>(this.dbProductRoot, ref => {
+          let query: firebase.firestore.Query = ref;
+          if (dietFilter != null) {
+            query = query.where('isNonVeg', '==', dietFilter);
+          }
+          if (cuisineFilter != null) {
+            query = query.where('cuisine', '==', cuisineFilter);
+          }
+          if (categoryFilter != null) {
+            query = query.where('category', '==', categoryFilter);
+          }
+          return query;
+        }).valueChanges()
+      ));
+  }
+
+  filterByCategory() {
+    // this.isNonVegFilter$.next(true);
+    // this.categoryFilter$.next(null);
+    // this.cuisineFilter$.next('North Indian');
+  }
+
+  resetAllFilters() {
+    this.isNonVegFilter$.next(null);
+    this.categoryFilter$.next(null);
+    this.cuisineFilter$.next(null);
   }
 
   getProductByID(productId: string): Observable<Fooditem> {
