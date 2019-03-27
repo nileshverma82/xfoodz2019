@@ -10,8 +10,11 @@ import { Fooditem } from "src/app/core/model";
 export class ProductCardComponent implements OnInit {
 
   @Input() fooditem: Fooditem;
-  constructor() { }
+  star: number[];
 
+  constructor() { 
+   this.star=[1,2,3,4,5];
+  }
   ngOnInit() {
   }
 

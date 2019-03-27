@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class ListComponent implements OnInit {
 
   fooditems$: Observable<Fooditem[]>;
-  constructor(private db: DbService, private router: Router) {
+  constructor(public db: DbService, private router: Router) {
     this.db.filterByCategory();
    }
 

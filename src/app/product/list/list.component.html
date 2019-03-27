@@ -1,3 +1,21 @@
+<mat-card fxLayout="row wrap">
+  <mat-chip-list>
+    <mat-chip>Pre-order
+      <mat-icon matChipRemove>cancel</mat-icon>
+    </mat-chip>
+    <mat-chip>Non-Veg
+      <mat-icon matChipRemove>cancel</mat-icon>
+    </mat-chip>
+    <mat-chip>North-Indian
+      <mat-icon matChipRemove>cancel</mat-icon>
+    </mat-chip>
+    <mat-chip>Snacks
+      <mat-icon matChipRemove>cancel</mat-icon>
+    </mat-chip>
+  </mat-chip-list>
+  <span class="spacer"></span>
+  <mat-icon (click)="this.db.clearFilters()">clear</mat-icon>
+</mat-card>
 <div 
   fxLayout="row wrap" 
   fxLayout.xs="column"

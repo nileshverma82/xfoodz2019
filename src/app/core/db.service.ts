@@ -64,10 +64,10 @@ export class DbService {
   filterByCategory() {
     // this.isNonVegFilter$.next(false);
     // this.categoryFilter$.next(null);
-    this.cuisineFilter$.next('North Indian');
+    // this.cuisineFilter$.next('North Indian');
   }
 
-  resetAllFilters() {
+  clearFilters() {
     this.isNonVegFilter$.next(null);
     this.categoryFilter$.next(null);
     this.cuisineFilter$.next(null);

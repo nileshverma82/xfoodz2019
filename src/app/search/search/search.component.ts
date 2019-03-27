@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DbService } from 'src/app/core/db.service';
 import { flatMap, map, distinct, tap } from 'rxjs/operators';
 import { Fooditem } from 'src/app/core/models';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-search',
@@ -14,7 +15,8 @@ export class SearchComponent implements OnInit {
   locationFromNavigator: { lat: number, lng: number };
 
   constructor(
-    private db: DbService) {
+    private db: DbService,
+    private router: Router) {
     this.cuisines = ['All Cuisines'];
     // Setting up default location
     this.locationFromNavigator = { lat: 1.3522174, lng: 103.87970299999999 };
@@ -32,6 +34,11 @@ export class SearchComponent implements OnInit {
     });
     
     // this.geoLocations$ = this.firestore.getProducts$(2);
+  }
+
+  applyFilter() {
+    this.db.isNonVegFilter$.next(true);
+    this.router.navigateByUrl('/');
   }
 
 }
