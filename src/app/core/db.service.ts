@@ -62,9 +62,9 @@ export class DbService {
   }
 
   filterByCategory() {
-    // this.isNonVegFilter$.next(true);
+    // this.isNonVegFilter$.next(false);
     // this.categoryFilter$.next(null);
-    // this.cuisineFilter$.next('North Indian');
+    this.cuisineFilter$.next('North Indian');
   }
 
   resetAllFilters() {
