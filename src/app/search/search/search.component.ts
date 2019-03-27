@@ -24,13 +24,13 @@ export class SearchComponent implements OnInit {
     // Get distinct cuisines
     this.db.getProductList().pipe(
       flatMap((fooditems: Fooditem[]) => fooditems),
-      map(fooditem => fooditem.cuisine),
+      map( (fooditem: Fooditem) => fooditem.cuisine),
       distinct(),
       tap( fi => console.log(fi))
     ).subscribe(fi => {
       this.cuisines.push(fi);
     });
-
+    
     // this.geoLocations$ = this.firestore.getProducts$(2);
   }
 
