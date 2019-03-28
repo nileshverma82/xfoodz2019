@@ -10,18 +10,20 @@ import { Router } from '@angular/router';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-
   fooditems$: Observable<Fooditem[]>;
-  constructor(public db: DbService, private router: Router) {
+  constructor(private db: DbService, private router: Router) {
     this.db.filterByCategory();
-   }
+  }
 
   ngOnInit() {
     this.fooditems$ = this.db.fooditems$;
   }
 
+  clearAllFilters() {
+    this.db.clearFilters();
+  }
+
   navigateToSearchPage() {
     this.router.navigate(['/search']);
   }
-
 }

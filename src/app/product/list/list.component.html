@@ -1,29 +1,3 @@
-<<<<<<< HEAD
-<mat-card>
-  <!-- <mat-card-title>Filters</mat-card-title> -->
-  <mat-card-content>
-    <div fxLayout="row wrap">
-      <mat-chip-list>
-        <mat-chip>Pre-Order
-          <mat-icon matChipRemove>clear</mat-icon>
-        </mat-chip>
-        <mat-chip>Non-Veg
-          <mat-icon matChipRemove>clear</mat-icon>
-        </mat-chip>
-        <mat-chip removable="true">North-Indian
-          <mat-icon matChipRemove>clear</mat-icon>
-        </mat-chip>
-        <mat-chip>Main-Course
-          <mat-icon matChipRemove>clear</mat-icon>
-        </mat-chip>
-      </mat-chip-list>
-      <span class="spacer"></span>
-      <mat-icon>clear</mat-icon>
-    </div>
-  </mat-card-content>
-</mat-card>
-
-=======
 <mat-card fxLayout="row wrap">
   <mat-chip-list>
     <mat-chip>Pre-order
@@ -40,9 +14,8 @@
     </mat-chip>
   </mat-chip-list>
   <span class="spacer"></span>
-  <mat-icon (click)="this.db.clearFilters()">clear</mat-icon>
+  <mat-icon (click)="clearAllFilters()">clear</mat-icon>
 </mat-card>
->>>>>>> ad5fa1d83a80ac913fdd0606afc89a3de855cc10
 <div 
   fxLayout="row wrap" 
   fxLayout.xs="column"

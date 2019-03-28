@@ -1,9 +1,11 @@
 <mat-card *ngIf="fooditem as fi" style="margin-top: 2px">
     <div *ngIf="fooditem.images[0].url as previewURL">
       <img mat-card-image [src]="previewURL" class="card-image">
+
       <div style="position: absolute; top: 0; right: 0">
         <mat-icon color="accent" *ngFor="let i of star">star</mat-icon>
       </div>
+      
     </div>
         <div fxLayout="rwo wrap" fxLayoutAlign="space-between">
           <span class="mat-h3" [style.color]="fi.isNonVeg? 'red':'green'">{{fi.title}}</span>

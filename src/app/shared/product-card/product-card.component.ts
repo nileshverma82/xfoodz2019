@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Input } from "@angular/core";
-import { Fooditem } from "src/app/core/model";
+import { Input } from '@angular/core';
+import { Fooditem } from 'src/app/core/model';
 
 @Component({
   selector: 'app-product-card',
@@ -12,8 +12,8 @@ export class ProductCardComponent implements OnInit {
   @Input() fooditem: Fooditem;
   star: number[];
 
-  constructor() { 
-   this.star=[1,2,3,4,5];
+  constructor() {
+   this.star = [1, 2, 3, 4, 5];
   }
   ngOnInit() {
   }
