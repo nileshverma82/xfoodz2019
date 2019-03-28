@@ -23,6 +23,7 @@
 
     <h3 class="greyTitle">Browse by Category</h3>
 
+<<<<<<< HEAD
     <mat-list role="list">
       <mat-list-item role="listitem" *ngFor="let cuisine of cuisines; let i = index">
         <mat-radio-button #radio [value]="i" (change)="selection = $event.value">
@@ -30,6 +31,39 @@
         </mat-radio-button>
       </mat-list-item>
     </mat-list>
+=======
+    <mat-selection-list fxLayout="row wrap">
+      <mat-list-option *ngFor="let cuisine of cuisines">{{cuisine}}</mat-list-option>
+    </mat-selection-list>
+    <!-- <mat-grid-list cols="3" gutterSize="1px"> -->
+      <!-- <mat-grid-tile *ngFor="let cuisine of cuisines" class="cat" #checked (click)="(checked == true)"> -->
+        <!-- <img src="assets/{{cuisine}}.jpg" />
+        <div class="overlay"></div> -->
+        <!-- <span>{{cuisine}}</span>
+        <mat-grid-tile-header *ngIf="checked == true" style="background-color: turquoise">
+          <mat-checkbox></mat-checkbox>
+        </mat-grid-tile-header>
+      </mat-grid-tile>
+    </mat-grid-list> -->
+  </mat-card>
+
+  <!-- <mat-card *ngFor="let loc of geoLocations$|async">
+    <mat-card-title>{{loc.userLocation}}</mat-card-title>
+    <mat-card-subtitle>{{loc.userLocation.latitude}}</mat-card-subtitle>
+
+  </mat-card> -->
+
+   <app-fab-action fabIcon="done" (click)="applyFilter()"></app-fab-action>
+</div>
+<!-- <div>
+  <mat-card>
+    <mat-card-title>Search near by</mat-card-title>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-title>Search by category</mat-card-title>
+  </mat-card>
+>>>>>>> ad5fa1d83a80ac913fdd0606afc89a3de855cc10
 
   </mat-card>
   <app-fab-action fabIcon="done" (click)="applySearch()"></app-fab-action>
