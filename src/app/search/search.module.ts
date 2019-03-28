@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from '../material/material.module';
 import { SharedModule } from '../shared/shared.module';
 import { SearchComponent } from './search/search.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 const searchRoute: Routes = [
@@ -18,6 +19,7 @@ const searchRoute: Routes = [
   declarations: [SearchComponent],
   imports: [
     CommonModule,
+    FlexLayoutModule,
     MaterialModule,
     SharedModule,
     RouterModule.forChild(searchRoute)

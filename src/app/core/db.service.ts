@@ -19,6 +19,7 @@ export class DbService {
   isNonVegFilter$: BehaviorSubject<boolean|null>;
   categoryFilter$: BehaviorSubject<string|null>;
   cuisineFilter$: BehaviorSubject<string|null>;
+  orderTypeFilter$: BehaviorSubject<string|null>;
   fooditems$: Observable<Fooditem[]>;
 
   constructor(
@@ -28,6 +29,7 @@ export class DbService {
     this.isNonVegFilter$ = new BehaviorSubject(null);
     this.categoryFilter$ = new BehaviorSubject(null);
     this.cuisineFilter$ = new BehaviorSubject(null);
+    this.orderTypeFilter$ = new BehaviorSubject(null);
     this.fooditems$ = this.getProductList();
   }
 
@@ -71,6 +73,7 @@ export class DbService {
     this.isNonVegFilter$.next(null);
     this.categoryFilter$.next(null);
     this.cuisineFilter$.next(null);
+    this.orderTypeFilter$.next(null);
   }
 
   getProductByID(productId: string): Observable<Fooditem> {
