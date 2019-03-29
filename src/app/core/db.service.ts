@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import * as firebase from 'firebase/app';
-import { Observable, of, BehaviorSubject , combineLatest} from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { first, switchMap, tap } from 'rxjs/operators';
 import { AppUser, Fooditem } from './models';
 import { SnackbarNotificationService } from './snackbar-notification.service';
-import { first, tap, switchMap } from 'rxjs/operators';
 
 export interface Filter {
   orderType?: string;
@@ -23,11 +23,11 @@ export class DbService {
   private dbProductRoot = 'products';
 
   // Product filters...
-  isNonVegFilter$: BehaviorSubject<boolean|null>;
-  categoryFilter$: BehaviorSubject<string|null>;
-  cuisineFilter$: BehaviorSubject<string|null>;
-  orderTypeFilter$: BehaviorSubject<string|null>;
-  currentFilter$: BehaviorSubject<Filter|null>;
+  isNonVegFilter$: BehaviorSubject<boolean | null>;
+  categoryFilter$: BehaviorSubject<string | null>;
+  cuisineFilter$: BehaviorSubject<string | null>;
+  orderTypeFilter$: BehaviorSubject<string | null>;
+  currentFilter$: BehaviorSubject<Filter | null>;
   fooditems$: Observable<Fooditem[]>;
   // currentFilter: Filter;
 

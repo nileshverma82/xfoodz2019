@@ -1,5 +1,4 @@
-<form [formGroup]="filterForm">
-  <span>{{filterForm.value|json}}</span>
+<div [formGroup]="filterForm">
  
   <mat-card fxLayout="column">
     
@@ -55,4 +54,4 @@
 
   </mat-card>
   <app-fab-action fabIcon="done" (click)="applySearch(filterForm.value)"></app-fab-action>
-</form>
+</div>

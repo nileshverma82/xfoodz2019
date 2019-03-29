@@ -1,21 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Fooditem } from 'src/app/core/model';
-import { DbService, Filter } from 'src/app/core/db.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
+import { DbService, Filter } from 'src/app/core/db.service';
+import { Fooditem } from 'src/app/core/model';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
-export class ListComponent implements OnInit {
+export class ListComponent implements OnInit, OnDestroy {
   fooditems$: Observable<Fooditem[]>;
+  subscription: Subscription;
   filter: Filter;
   showFilter: boolean;
 
   constructor(public db: DbService, private router: Router) {
-    this.db.currentFilter$.subscribe(currentfilter => {
+    this.subscription = this.db.currentFilter$.subscribe(currentfilter => {
       if (Object.keys(currentfilter).length) {
         this.filter = currentfilter;
         this.showFilter = true;
@@ -57,5 +58,9 @@ export class ListComponent implements OnInit {
 
   navigateToSearchPage() {
     this.router.navigate(['/search']);
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }
