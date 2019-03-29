@@ -6,7 +6,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.scss']
 })
 export class DetailComponent implements OnInit, OnDestroy {
   fooditem: Fooditem;
@@ -19,6 +18,7 @@ export class DetailComponent implements OnInit, OnDestroy {
   ) {
     // tslint:disable-next-line:no-string-literal
     this.fooditem = this.route.snapshot.data['product'];
+    console.log(this.fooditem);
   }
 
 

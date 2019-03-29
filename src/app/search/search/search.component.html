@@ -1,36 +1,58 @@
-<div>
-  <!-- <mat-slider style="width: 100%" value="2" max="10" min="0" thumbLabel="true" tickInterval="1">
-  </mat-slider>
-  <app-show-gmap [lat]="locationFromNavigator.lat" [lng]="locationFromNavigator.lng"></app-show-gmap> -->
+<form [formGroup]="filterForm">
+  <span>{{filterForm.value|json}}</span>
  
-  <mat-card>
+  <mat-card fxLayout="column">
     
-    <mat-selection-list #orderType selectedOption.multiple="false">
-      <mat-list-option value="abc">Ready2Eat</mat-list-option>
-      <mat-list-option value="xyz">Pre-Order</mat-list-option>
-    </mat-selection-list>
+    <mat-list #orderType >
+      <mat-radio-group formControlName="orderType">
+      <mat-list-item>
+        <mat-radio-button value="instant">Ready2Eat</mat-radio-button>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-radio-button value="preOrder">Pre-Order</mat-radio-button>
+      </mat-list-item>
+      </mat-radio-group>
+    </mat-list>
 
     
-    <h3 class="greyTitle">Select Food Type</h3>
-    <!-- <mat-slide-toggle fxFlex="0 1 48" matInput>Veg / Non-Veg</mat-slide-toggle> -->
-    <mat-selection-list>
-      <mat-list-option>Vegeterian</mat-list-option>
-      <mat-list-option>Non-Vegeterian</mat-list-option>
-    </mat-selection-list>
+    <h3>Select Food Type</h3>
+    <mat-list #orderType>
+      <mat-radio-group formControlName="isNonVeg">
+        <mat-list-item>
+          <mat-radio-button value="Veg">Veg</mat-radio-button>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-radio-button value="Non-Veg">Non-Veg</mat-radio-button>
+        </mat-list-item>
+      </mat-radio-group>
+    </mat-list>
+
     <mat-divider></mat-divider>
 
-    <mat-divider></mat-divider>
-
-    <h3 class="greyTitle">Browse by Category</h3>
+    <h3>Browse by Cuisine</h3>
 
     <mat-list role="list">
+      <mat-radio-group formControlName="cuisine" >
       <mat-list-item role="listitem" *ngFor="let cuisine of cuisines; let i = index">
-        <mat-radio-button #radio [value]="i" (change)="selection = $event.value">
+        <mat-radio-button #radio [value]="cuisine" (change)="selection = $event.value">
           {{cuisine}}
         </mat-radio-button>
       </mat-list-item>
+      </mat-radio-group>
+    </mat-list>
+
+    <h3>Browse by Category</h3>
+
+    <mat-list role="list">
+      <mat-radio-group formControlName="category">
+        <mat-list-item role="listitem" *ngFor="let category of categories; let i = index">
+          <mat-radio-button #radio [value]="category" (change)="selection = $event.value">
+            {{category}}
+          </mat-radio-button>
+        </mat-list-item>
+      </mat-radio-group>
     </mat-list>
 
   </mat-card>
-  <app-fab-action fabIcon="done" (click)="applySearch()"></app-fab-action>
-</div>
+  <app-fab-action fabIcon="done" (click)="applySearch(filterForm.value)"></app-fab-action>
+</form>
