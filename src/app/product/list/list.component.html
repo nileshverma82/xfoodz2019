@@ -18,6 +18,7 @@
     <mat-icon>clear</mat-icon>
   </button>
 </mat-card>
+
 <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-around stretch">
   <app-product-card fxFlex="0 1 calc(20em + 10px)" *ngFor="let fooditem of fooditems$|async" [fooditem]="fooditem"
     routerLink="/detail/{{fooditem.id}}">

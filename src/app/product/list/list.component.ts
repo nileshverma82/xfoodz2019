@@ -9,6 +9,7 @@ import { Fooditem } from 'src/app/core/model';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
+
 export class ListComponent implements OnInit, OnDestroy {
   fooditems$: Observable<Fooditem[]>;
   subscription: Subscription;
@@ -31,7 +32,6 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   removeOrderTypeFilter() {
-    // this.filter.orderType = null;
     delete this.filter.orderType;
     this.db.applyFilter(this.filter);
   }

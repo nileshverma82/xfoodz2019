@@ -6,7 +6,6 @@ import { flatMap } from 'rxjs/operators';
 import { DbService, Filter } from 'src/app/core/db.service';
 import { Fooditem } from 'src/app/core/models';
 
-
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -14,15 +13,19 @@ import { Fooditem } from 'src/app/core/models';
 })
 export class SearchComponent implements OnInit, OnDestroy {
 
-  public cuisines: string[];
-  public categories: string[];
+  cuisines: string[];
+  categories: string[];
   filterForm: FormGroup;
   subscription: Subscription;
+  filterSubscription: Subscription;
 
-  constructor(private db: DbService, private router: Router, private fb: FormBuilder) {
+  constructor(
+    private db: DbService,
+    private router: Router,
+    private fb: FormBuilder) {
     this.cuisines = [];
     this.categories = [];
-    this.subscription = this.db.currentFilter$.subscribe(filters => {
+    this.filterSubscription = this.db.currentFilter$.subscribe(filters => {
       this.filterForm = this.createFormGroup(filters);
     });
   }
@@ -38,10 +41,9 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // Get distinct cuisines
-    this.db.fooditems$.pipe(
+    this.subscription = this.db.fooditems$.pipe(
       flatMap((fooditems: Fooditem[]) => fooditems),
-    )
-      .subscribe(fi => {
+    ).subscribe(fi => {
         if (this.cuisines.indexOf(fi.cuisine) === -1) {
           this.cuisines.push(fi.cuisine);
         }
@@ -52,7 +54,7 @@ export class SearchComponent implements OnInit, OnDestroy {
       });
   }
 
-  applySearch(filter) {
+  applySearch(filter: Filter) {
     // Remove properties with NULL values
     Object.keys(filter).forEach((key) => (filter[key] == null) && delete filter[key]);
     this.db.applyFilter(filter);
@@ -61,5 +63,6 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+    this.filterSubscription.unsubscribe();
   }
 }

@@ -22,11 +22,6 @@ export class DbService {
   private dbAppTrayRoot = 'apptray';
   private dbProductRoot = 'products';
 
-  // Product filters...
-  isNonVegFilter$: BehaviorSubject<boolean | null>;
-  categoryFilter$: BehaviorSubject<string | null>;
-  cuisineFilter$: BehaviorSubject<string | null>;
-  orderTypeFilter$: BehaviorSubject<string | null>;
   currentFilter$: BehaviorSubject<Filter | null>;
   fooditems$: Observable<Fooditem[]>;
   // currentFilter: Filter;
@@ -35,11 +30,6 @@ export class DbService {
     private afs: AngularFirestore,
     private notify: SnackbarNotificationService
   ) {
-    // this.currentFilter = {};
-    this.isNonVegFilter$ = new BehaviorSubject(null);
-    this.categoryFilter$ = new BehaviorSubject(null);
-    this.cuisineFilter$ = new BehaviorSubject(null);
-    this.orderTypeFilter$ = new BehaviorSubject(null);
     this.currentFilter$ = new BehaviorSubject({});
     this.fooditems$ = this.getProductList();
   }
