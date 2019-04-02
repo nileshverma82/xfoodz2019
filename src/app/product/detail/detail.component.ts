@@ -15,15 +15,12 @@ export class DetailComponent implements OnInit, OnDestroy {
     public auth: AuthService,
     private route: ActivatedRoute,
     private router: Router,
-  ) {
-    // tslint:disable-next-line:no-string-literal
-    this.fooditem = this.route.snapshot.data['product'];
-    console.log(this.fooditem);
-  }
+  ) { }
 
 
   ngOnInit() {
-
+    this.fooditem = this.route.snapshot.data.product;
+    console.log(this.fooditem);
     // this.fooditemImageCount = this.fooditem.images.length;
     // this.preview = this.fooditem.images[0].url;
   }

@@ -9,11 +9,13 @@ import { FabActionComponent } from './fab-action/fab-action.component';
 import { AppToolbarComponent } from './app-toolbar/app-toolbar.component';
 import { RouterModule } from '@angular/router';
 import { TruncatePipe } from './truncate.pipe';
+import { ImageManagerComponent } from './image-manager/image-manager.component';
 
 const SHARED_COMPONENTS = [
   AppToolbarComponent,
   DialogConfirmComponent,
   FabActionComponent,
+  ImageManagerComponent,
   ProductCardComponent,
   TruncatePipe
 ];
@@ -24,7 +26,8 @@ const SHARED_COMPONENTS = [
     ProductCardComponent,
     FabActionComponent,
     AppToolbarComponent,
-    TruncatePipe],
+    TruncatePipe,
+    ImageManagerComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,
