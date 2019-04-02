@@ -132,6 +132,19 @@ export class DbService {
       });
   }
 
+  async updateUserData(uid: string, data: any) {
+    // Sets user data to firestore on login
+    const userRef = this.afs.collection<any>(this.dbAppUserRoot);
+    const promise = userRef.doc(uid).update(data);
+    await promise.then(
+      res => {
+        console.log('User data updated!!');
+      }, err => {
+        console.log('Error during update User: ', err);
+      }
+    );
+  }
+
   async deleteUser(uid: string) {
     const userDoc = `${this.dbAppUserRoot}/${uid}`;
     const userRef: AngularFirestoreDocument<AppUser> = this.afs.doc(userDoc);
@@ -141,3 +154,4 @@ export class DbService {
       .catch(e => console.log('Error while deleting user: ', uid));
   }
 }
+

@@ -10,6 +10,10 @@ import { DetailComponent } from './detail/detail.component';
 import { ListComponent } from './list/list.component';
 import { ManageComponent } from './manage/manage.component';
 import { ProductResolver } from './product.resolver';
+import { ImageUploadComponent } from './manage/image-upload/image-upload.component';
+import { AutoAddressComponent } from './manage/auto-address/auto-address.component';
+import { Form2Component } from './manage/product-form/form2/form2.component';
+import { Form1Component } from './manage/product-form/form1/form1.component';
 
 
 const productRoutes: Routes = [
@@ -38,7 +42,14 @@ const productRoutes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ListComponent, DetailComponent, ManageComponent],
+  declarations: [
+    ListComponent,
+    DetailComponent,
+    ManageComponent,
+    ImageUploadComponent,
+    AutoAddressComponent,
+    Form2Component,
+    Form1Component],
   imports: [
     CommonModule,
     FlexLayoutModule,
