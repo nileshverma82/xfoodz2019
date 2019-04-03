@@ -41,6 +41,7 @@ export class ManageComponent implements OnInit, OnDestroy {
     this.canNavigateAway = false;
 
     this.currentAppUser = this.auth.currUser;
+    console.log('currentAppUser from ManageComponent: ', this.currentAppUser);
 
     this.createForm();
 
@@ -52,13 +53,11 @@ export class ManageComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.fooditem = this.route.snapshot.data.product;
     if (this.fooditem) {
-      console.log('ngOnInit: Modify fooditem.');
       this.isNewFooditem = false;
       this.imageUploadCompleted = true;
       this.tempFooditem = this.fooditem;
       this.rebuildProductForm(this.tempFooditem);
     } else {
-      console.log('ngOnInit: Create New fooditem.');
       this.isNewFooditem = true;
       this.imageUploadCompleted = false;
       // Initialize new fooditem.

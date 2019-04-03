@@ -25,8 +25,12 @@ export class AuthService {
     this.currUser$ = this.afAuth.authState.pipe(
       switchMap((user) => {
         if (user) {
-          this.currUser = user;
-          return this.db.getUser(user.uid);
+          return this.db.getUser(user.uid).pipe(
+            first(),
+            tap(cu => {
+              this.currUser = cu;
+            })
+          );
         } else {
           this.currUser = null;
           return of(null);

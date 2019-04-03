@@ -14,6 +14,7 @@ import { ImageUploadComponent } from './manage/image-upload/image-upload.compone
 import { AutoAddressComponent } from './manage/auto-address/auto-address.component';
 import { Form2Component } from './manage/product-form/form2/form2.component';
 import { Form1Component } from './manage/product-form/form1/form1.component';
+import { AuthSocialGuard } from '../core/auth-social.guard';
 
 
 const productRoutes: Routes = [
@@ -22,7 +23,7 @@ const productRoutes: Routes = [
     component: ManageComponent,
     data: { title: 'PRODUCT_MANAGE_PAGE' },
     resolve: { product: ProductResolver },
-    // canActivate: [AuthSocialGuard],
+    canActivate: [AuthSocialGuard],
     canDeactivate: [CanDeactivateGuard]
   },
   {
