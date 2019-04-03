@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path: '', component: ShellComponent, data: { title: 'APP_SHELL_PAGE' },
     children: [
-      { path: 'tray', loadChildren: './tray/tray.module#TrayModule' },
+      { path: 'cart', loadChildren: './app-cart/app-cart.module#AppCartModule' },
       { path: 'checkout', loadChildren: './checkout/checkout.module#CheckoutModule' },
       { path: 'chat', loadChildren: './chat/chat.module#ChatModule' },
       { path: 'search', loadChildren: './search/search.module#SearchModule' },

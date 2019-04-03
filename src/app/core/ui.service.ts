@@ -75,7 +75,7 @@ export class UIService {
           });
         }
         break;
-      case 'APP_TRAY_PAGE':
+      case 'APP_CART_PAGE':
         this.appToolBar$.next({ pageTitle: 'My Cart', showCancelIcon: true });
         break;
       case 'APP_CHECKOUT_PAGE':

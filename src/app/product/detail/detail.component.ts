@@ -31,7 +31,7 @@ export class DetailComponent implements OnInit, OnDestroy {
         console.log('onClickFab: ', action);
         // console.log('case: add:', this.auth.currentAppUser);
         // this.cartService.manageProduct(this.auth.currentAppUser.uid, this.fooditem);
-        this.router.navigate(['tray']);
+        this.router.navigate(['cart']);
         break;
       case 'edit':
         console.log('onClickFab: ', action);
@@ -39,7 +39,7 @@ export class DetailComponent implements OnInit, OnDestroy {
         break;
       default:
         console.log('onClickFab: ', action);
-        this.router.navigate(['tray']);
+        this.router.navigate(['cart']);
         // this.fabActionIcon = 'add';
         break;
     }

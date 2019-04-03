@@ -14,6 +14,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { ShellComponent } from './shell/shell.component';
+import { AppCartModule } from './app-cart/app-cart.module';
+import { AuthGuard } from './core/auth.guard';
 
 @NgModule({
   declarations: [AppComponent, ShellComponent],
@@ -29,9 +31,10 @@ import { ShellComponent } from './shell/shell.component';
     FlexLayoutModule,
     SharedModule,
     LayoutModule,
-    MaterialModule
+    MaterialModule,
+    AppCartModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

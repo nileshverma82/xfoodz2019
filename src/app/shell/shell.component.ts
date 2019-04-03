@@ -23,7 +23,7 @@ export class ShellComponent {
   navList = [
     { menuIcon: 'home', menuName: 'Home', menuRoute: '/' },
     { menuIcon: 'assignment', menuName: 'My Orders', menuRoute: '/checkout' },
-    { menuIcon: 'shopping_cart', menuName: 'Cart', menuRoute: '/tray' },
+    { menuIcon: 'shopping_cart', menuName: 'Cart', menuRoute: '/cart' },
     { menuIcon: 'favorite', menuName: 'Wish List', menuRoute: '/wishlist' },
     { menuIcon: 'account_circle', menuName: 'Profile', menuRoute: '/user' },
     { menuIcon: 'language', menuName: 'Language', menuRoute: './' },
