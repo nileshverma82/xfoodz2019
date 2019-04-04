@@ -1,10 +1,9 @@
 import { ElementRef, Injectable, NgZone } from '@angular/core';
 import * as firebase from 'firebase';
+import { } from 'googlemaps';
 import { BehaviorSubject, Observable, Observer } from 'rxjs';
-import { environment } from '../../environments/environment';
 import { IGeoInfo } from './models';
 import { ScriptLoadService } from './script-load.service';
-// import { } from 'googlemaps';
 
 const GEOLOCATION_ERRORS = {
   'errors.location.unsupportedBrowser': 'Browser does not support location services',

@@ -2,10 +2,11 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from 'src/app/core/auth.service';
 import { Fooditem } from 'src/app/core/models';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AppCartService } from 'src/app/app-cart/app-cart.service';
 
 @Component({
   selector: 'app-detail',
-  templateUrl: './detail.component.html',
+  templateUrl: './detail.component.html'
 })
 export class DetailComponent implements OnInit, OnDestroy {
   fooditem: Fooditem;
@@ -15,8 +16,8 @@ export class DetailComponent implements OnInit, OnDestroy {
     public auth: AuthService,
     private route: ActivatedRoute,
     private router: Router,
-  ) { }
-
+    private cartService: AppCartService
+  ) {}
 
   ngOnInit() {
     this.fooditem = this.route.snapshot.data.product;
@@ -30,7 +31,10 @@ export class DetailComponent implements OnInit, OnDestroy {
       case 'add':
         console.log('onClickFab: ', action);
         // console.log('case: add:', this.auth.currentAppUser);
-        // this.cartService.manageProduct(this.auth.currentAppUser.uid, this.fooditem);
+        this.cartService.manageProduct(
+          this.auth.currUser.uid,
+          this.fooditem
+        );
         this.router.navigate(['cart']);
         break;
       case 'edit':
@@ -50,6 +54,4 @@ export class DetailComponent implements OnInit, OnDestroy {
   }
 
   // }
-
-
 }
