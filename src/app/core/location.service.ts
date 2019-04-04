@@ -61,17 +61,17 @@ export class LocationService {
     });
   }
 
-  loadGoogleMapScript() {
-    if (!this.googleScriptLoaded ) {
-      this.load.loadScript(environment.googleMapURL, 'google-map', () => {
-        console.log('Google-Maps Initiated!!');
-        const googleMaps = window['google']['maps'];
-        this.isGoogle$.next(googleMaps);
-      });
-      this.googleScriptLoaded = true;
+  // loadGoogleMapScript() {
+  //   if (!this.googleScriptLoaded ) {
+  //     this.load.loadScript(environment.googleMapURL, 'google-map', () => {
+  //       console.log('Google-Maps Initiated!!');
+  //       const googleMaps = window['google']['maps'];
+  //       this.isGoogle$.next(googleMaps);
+  //     });
+  //     this.googleScriptLoaded = true;
 
-    }
-  }
+  //   }
+  // }
 
   // Create a map with the marker.
   createMap(mapElement: ElementRef, myLat: any, myLng: any): google.maps.Map {
@@ -84,10 +84,10 @@ export class LocationService {
       scrollwheel: false,
     });
 
-    const marker = new google.maps.Marker({
-      position: myLatLng,
-      map: map,
-    });
+    // const marker = new google.maps.Marker({
+    //   position: myLatLng,
+    //   map: map,
+    // });
 
     return map;
   }

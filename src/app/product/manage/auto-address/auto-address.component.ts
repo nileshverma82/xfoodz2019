@@ -21,11 +21,11 @@ export class AutoAddressComponent implements OnInit, AfterViewInit, OnChanges, O
 
   geoInfo: IGeoInfo;
 
-  place: google.maps.places.PlaceResult;
+  // place: google.maps.places.PlaceResult;
 
   constructor(private locationService: LocationService, private ngZone: NgZone) {
     console.log('constructor: #### View Initialized ####');
-    this.locationService.loadGoogleMapScript(); // Initialize googe-maps
+  // this.locationService.loadGoogleMapScript(); // Initialize googe-maps
   }
 
   ngOnChanges() {

@@ -190,6 +190,7 @@ export class AppCartService {
     });
   }
 
+  // tslint:disable-next-line:max-line-length
   // checkoutOrder(buyer: { id: string, name: string }, seller: { id: string, name: string}, paymentMethod: string, deliveryMethod: string) {
   //   return this.afs.collection(this.cartColl).doc(buyer.id)
   //     .collection(this.orderSubColl).doc(seller.id)
