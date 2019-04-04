@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
-import { Routes } from "@angular/router";
-import { RouterModule } from "@angular/router";
+import { Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 const loginRoute: Routes = [
   {
@@ -13,7 +13,7 @@ const loginRoute: Routes = [
     // canActivate: [AuthSocialGuard],
     // canDeactivate: [CanDeactivateGuard]
   }
-]
+];
 
 @NgModule({
   declarations: [LoginComponent],

@@ -15,6 +15,7 @@ import { AutoAddressComponent } from './manage/auto-address/auto-address.compone
 import { Form2Component } from './manage/product-form/form2/form2.component';
 import { Form1Component } from './manage/product-form/form1/form1.component';
 import { AuthSocialGuard } from '../core/auth-social.guard';
+import { AuthGuard } from '../core/auth.guard';
 
 
 const productRoutes: Routes = [
@@ -30,8 +31,8 @@ const productRoutes: Routes = [
     path: 'detail/:id',
     component: DetailComponent,
     data: { title: 'PRODUCT_DETAIL_PAGE' },
-    resolve: { product: ProductResolver }
-    // canActivate: [AuthGuard]
+    resolve: { product: ProductResolver },
+    canActivate: [AuthGuard]
   },
   {
     path: '',
