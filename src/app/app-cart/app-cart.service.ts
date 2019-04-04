@@ -3,7 +3,7 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 import { first, switchMap, tap, map, flatMap } from 'rxjs/operators';
 import { AuthService } from '../core/auth.service';
 import { AppUser, Fooditem } from '../core/models';
-import { ICartDoc, ICartItem } from './app-cart.model';
+import { ICartDoc, ICartItem, ICheckout } from './app-cart.model';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 
 @Injectable({
@@ -52,6 +52,13 @@ export class AppCartService {
 
   getAllOrders$(cartID: string): Observable<ICartDoc[]> {
     return this.afs.collection(this.cartColl).doc(cartID).collection<ICartDoc>(this.orderSubColl).valueChanges();
+  }
+
+  getOrdersById$(cartID: string, orderID: string) {
+    return this.afs.collection(this.cartColl)
+      .doc(cartID).
+      collection(this.orderSubColl)
+      .doc<ICartDoc>(orderID).valueChanges();
   }
 
   getAllItems$(cartID: string, orderID: string): Observable<ICartItem[]> {
@@ -190,26 +197,26 @@ export class AppCartService {
     });
   }
 
-  // tslint:disable-next-line:max-line-length
-  // checkoutOrder(buyer: { id: string, name: string }, seller: { id: string, name: string}, paymentMethod: string, deliveryMethod: string) {
-  //   return this.afs.collection(this.cartColl).doc(buyer.id)
-  //     .collection(this.orderSubColl).doc(seller.id)
-  //     .collection(this.itemSubColl).valueChanges().pipe(
-  //       first(),
-  //       map( items => {
-  //         const checkedoutOrder = {
-  //           buyer: buyer,
-  //           seller: seller,
-  //           currState: {state: 'Awaiting_Confirmation'},
-  //           paymentOption: paymentMethod,
-  //           deliveryOption: deliveryMethod,
-  //           items: items,
-  //           checkedOutAt: new Date()
-  //         } as ICheckout;
-  //         return checkedoutOrder;
-  //       } )
-  //     );
-  // }
+  checkoutOrder(buyer: { id: string, name: string }, seller: { id: string, name: string}, paymentMethod: string, deliveryMethod: string) {
+    return this.afs.collection(this.cartColl).doc(buyer.id)
+      .collection(this.orderSubColl).doc(seller.id)
+      .collection(this.itemSubColl).valueChanges().pipe(
+        first(),
+        map( items => {
+          const checkedoutOrder =  {
+            buyer,
+            seller,
+            currState: {state: 'Awaiting_Confirmation'},
+            paymentOption: paymentMethod,
+            deliveryOption: deliveryMethod,
+            items,
+            checkedOutAt: new Date()
+          } as ICheckout;
+          console.log('checkedoutOrder: ', checkedoutOrder);
+          return checkedoutOrder;
+        } )
+      );
+  }
 
 
 }

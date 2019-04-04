@@ -11,6 +11,8 @@ import { AppCartService } from 'src/app/app-cart/app-cart.service';
 export class DetailComponent implements OnInit, OnDestroy {
   fooditem: Fooditem;
   fabActionIcon: string;
+  preview: string;
+  fooditemImageCount: number;
 
   constructor(
     public auth: AuthService,
@@ -22,8 +24,8 @@ export class DetailComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.fooditem = this.route.snapshot.data.product;
     console.log(this.fooditem);
-    // this.fooditemImageCount = this.fooditem.images.length;
-    // this.preview = this.fooditem.images[0].url;
+    this.fooditemImageCount = this.fooditem.images.length;
+    this.preview = this.fooditem.images[0].url;
   }
 
   onClickFab(action: string) {

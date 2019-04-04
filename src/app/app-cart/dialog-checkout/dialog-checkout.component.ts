@@ -22,8 +22,8 @@ export class DialogCheckoutComponent implements OnInit {
 
   constructor( @Inject(MAT_DIALOG_DATA)
     public data: DialogData,
-    public dialogRef: MatDialogRef<DialogCheckoutComponent>,
-    private fb: FormBuilder) {
+               public dialogRef: MatDialogRef<DialogCheckoutComponent>,
+               private fb: FormBuilder) {
       this.createForm();
     }
 

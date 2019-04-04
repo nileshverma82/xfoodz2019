@@ -8,9 +8,16 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedModule } from '../shared/shared.module';
 import { DialogCheckoutComponent } from './dialog-checkout/dialog-checkout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { OrderReviewComponent } from './order-review/order-review.component';
 import { MaterialModule } from '../material/material.module';
 
 const appCartRoutes: Routes = [
+  {
+    path: ':id',
+    component: OrderReviewComponent,
+    canActivate: [AuthGuard],
+    data: { title: 'ORDER_REVIEW' }
+  },
   {
     path: '',
     component: AppCartComponent,
@@ -29,7 +36,7 @@ const appCartRoutes: Routes = [
     ReactiveFormsModule,
     RouterModule.forChild(appCartRoutes),
   ],
-  declarations: [AppCartComponent, CartListComponent, DialogCheckoutComponent],
+  declarations: [AppCartComponent, CartListComponent, DialogCheckoutComponent, OrderReviewComponent],
   entryComponents: [DialogCheckoutComponent]
 })
 export class AppCartModule { }
