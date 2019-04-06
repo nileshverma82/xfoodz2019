@@ -16,9 +16,10 @@ import { SharedModule } from './shared/shared.module';
 import { ShellComponent } from './shell/shell.component';
 import { AppCartModule } from './app-cart/app-cart.module';
 import { AuthGuard } from './core/auth.guard';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
-  declarations: [AppComponent, ShellComponent],
+  declarations: [AppComponent, ShellComponent, PageNotFoundComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

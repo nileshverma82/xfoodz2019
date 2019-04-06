@@ -1,9 +1,9 @@
 <mat-card *ngIf="fooditem as fi" class="productBox">
   <div *ngIf="fooditem.images[0].url as previewURL">
-    <img mat-card-image [src]="previewURL" class="productImg">
+    <img mat-card-image [src]="previewURL" class="card-image">
     <span class="price">SGD {{fi.price}}</span>
-
   </div>
+
   <div fxLayout="rwo wrap" fxLayoutAlign="space-between">
     <span class="mat-h3" [style.color]="fi.isNonVeg? 'red':'green'">{{fi.title}}</span>
     <div>

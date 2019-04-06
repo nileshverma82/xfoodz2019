@@ -23,5 +23,5 @@
   <app-product-card fxFlex="0 1 calc(20em + 10px)" *ngFor="let fooditem of fooditems$|async" [fooditem]="fooditem"
     routerLink="/detail/{{fooditem.id}}">
   </app-product-card>
-  <app-fab-action fabIcon="search" (click)="navigateToSearchPage()"></app-fab-action>
+  <app-fab-action fabIcon="search" (click)="navigateToSearchPage()" style="z-index: 99"></app-fab-action>
 </div>
