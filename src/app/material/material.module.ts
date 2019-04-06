@@ -20,6 +20,7 @@ import {
   MatStepperModule,
   MatSelectModule,
   MatSliderModule,
+  MatTabsModule,
 } from '@angular/material';
 
 @NgModule({
@@ -44,6 +45,7 @@ import {
     MatSnackBarModule,
     MatStepperModule,
     MatToolbarModule,
+    MatTabsModule,
   ]
 })
 export class MaterialModule { }

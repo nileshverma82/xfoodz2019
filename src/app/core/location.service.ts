@@ -1,6 +1,8 @@
+// Typescript tripple-slash directive to resolve googlemaps error
+/// <reference types="@types/googlemaps" />
+
 import { ElementRef, Injectable, NgZone } from '@angular/core';
 import * as firebase from 'firebase';
-import { } from 'googlemaps';
 import { BehaviorSubject, Observable, Observer } from 'rxjs';
 import { IGeoInfo } from './models';
 import { ScriptLoadService } from './script-load.service';

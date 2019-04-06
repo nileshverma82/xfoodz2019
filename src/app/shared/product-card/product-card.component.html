@@ -1,16 +1,17 @@
-<mat-card *ngIf="fooditem as fi" style="margin-top: 2px">
-    <div *ngIf="fooditem.images[0].url as previewURL">
-      <img mat-card-image [src]="previewURL" class="card-image">
+<mat-card *ngIf="fooditem as fi" class="productBox">
+  <div *ngIf="fooditem.images[0].url as previewURL">
+    <img mat-card-image [src]="previewURL" class="productImg">
+    <span class="price">SGD {{fi.price}}</span>
 
-      <div style="position: absolute; top: 0; right: 0">
-        <mat-icon color="accent" *ngFor="let i of star">star</mat-icon>
-      </div>
-      
+  </div>
+  <div fxLayout="rwo wrap" fxLayoutAlign="space-between">
+    <span class="mat-h3" [style.color]="fi.isNonVeg? 'red':'green'">{{fi.title}}</span>
+    <div>
+      <mat-icon color="accent">favorite_border</mat-icon> 
+      <span style="vertical-align:35%">123</span>
     </div>
-        <div fxLayout="rwo wrap" fxLayoutAlign="space-between">
-          <span class="mat-h3" [style.color]="fi.isNonVeg? 'red':'green'">{{fi.title}}</span>
-          <span class="mat-h3">[CAD-{{fi.price}}]</span>
-        </div>
+  </div>
+
   <mat-card-content>
     <span class="mat-h3">[ {{fi.category}} ] . [ {{fi.cuisine}} ]</span>
     <br>
@@ -19,27 +20,18 @@
 
   <div fxLayout="row wrap" fxLayoutAlign="space-between">
     <div>
-      <mat-icon>room_service</mat-icon> 
+      <mat-icon>room_service</mat-icon>
       {{fi.serving}} persons
     </div>
     <div>
-      <mat-icon>schedule</mat-icon> 
+      <mat-icon>schedule</mat-icon>
       {{fi.orderTime}} {{fi.orderType == 'instant'? 'minutes':'hours'}}
     </div>
     <div>
-      <mat-icon>place</mat-icon> 
+      <mat-icon>place</mat-icon>
       1.0 km
     </div>
 
   </div>
 
 </mat-card>
-<!-- <mat-card>
-  <div fxLayout="row wrap">
-    <span class="mat-h2">Rating</span>
-    <span class="spacer"></span>
-    <div>
-      <mat-icon *ngFor="let i of star">star</mat-icon>
-    </div>
-  </div>
-</mat-card> -->

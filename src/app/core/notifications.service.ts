@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { MatSnackBar } from "@angular/material/snack-bar";
-import { SnackBarComponent } from "src/app/shared/snack-bar/snack-bar.component";
-import { Observable, of } from "rxjs";
-import { MatSnackBarConfig } from "@angular/material/snack-bar";
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackBarComponent } from 'src/app/shared/snack-bar/snack-bar.component';
+import { Observable, of } from 'rxjs';
+import { MatSnackBarConfig } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'

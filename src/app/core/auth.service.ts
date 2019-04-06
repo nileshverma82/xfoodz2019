@@ -13,8 +13,8 @@ import { DbService } from './db.service';
 })
 
 export class AuthService {
-  currUser$: Observable<AppUser>;
-  currUser: AppUser;
+  currUser$: Observable<AppUser | null>;
+  currUser: AppUser|null;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -45,6 +45,29 @@ export class AuthService {
     return this.afAuth.authState.pipe(first()).toPromise();
   }
 
+  loginAnonymously(): Promise<void> {
+    console.log('#Event: loginAnonymously()#');
+    return this.afAuth.auth.signInAnonymously()
+      .then((credential: firebase.auth.UserCredential) => {
+        console.log(credential);
+        const anomymousUser: AppUser = {
+          uid: credential.user.uid,
+          isAnonymous: credential.user.isAnonymous,
+          displayName: 'Guest',
+          photoURL: 'anonymous-user'
+        };
+
+        // Save user data to fireabase...
+        console.log('loginAnonymously(): Sign in successfull...');
+        return this.db.addUpdateUser(anomymousUser);
+
+      })
+      .catch(
+        (e: firebase.FirebaseError) => {
+          this.handleAuthErrors(e);
+        });
+  }
+
   async googleSignin() {
     try {
       const provider = new auth.GoogleAuthProvider();
@@ -65,6 +88,10 @@ export class AuthService {
     } catch (e) {
       this.handleAuthErrors(e);
     }
+  }
+
+  upgradeAnonymousUser() {
+    // TODO: Upgrade anonymous user to google.
   }
 
 
