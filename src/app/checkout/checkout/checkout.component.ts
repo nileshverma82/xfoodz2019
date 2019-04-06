@@ -15,7 +15,6 @@ export interface IOrderState {
   additionalComments?: string;
 }
 
-
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',

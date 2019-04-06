@@ -32,8 +32,8 @@ export class OrderlListComponent implements OnInit, OnChanges {
   };
 
   constructor(public dialog: MatDialog,
-    private checkoutService: CheckoutService,
-    private router: Router) {
+              private checkoutService: CheckoutService,
+              private router: Router) {
       this.buyerView = false;
       this.sellerView = false;
     }
@@ -49,13 +49,13 @@ export class OrderlListComponent implements OnInit, OnChanges {
   ngOnInit() {
   }
 
-  prepareOrderState(state: string, reason?: string, comments?: string): IOrderState {
-    return <IOrderState>{
-      state: state,
+  prepareOrderState(currState: string, reason?: string, comments?: string): IOrderState {
+    return {
+      state: currState,
       reason: reason || null,
       additionalComments: comments || null,
       updatedAt: new Date()
-    };
+    } as IOrderState;
   }
 
   confirmOrder(id: string) {
@@ -76,7 +76,7 @@ export class OrderlListComponent implements OnInit, OnChanges {
 
   cancelOrder(id: string) {
     const dialogRef = this.dialog.open(DialogCancellationComponent, {
-      data: <DialogData>{ userAction: 'CANCEL' }
+      data: { userAction: 'CANCEL' } as DialogData
     });
 
     dialogRef.afterClosed().pipe(first()).subscribe((data: DialogData) => {
@@ -91,7 +91,7 @@ export class OrderlListComponent implements OnInit, OnChanges {
 
   rejectOrder(id: string) {
     const dialogRef = this.dialog.open(DialogCancellationComponent, {
-      data: <DialogData>{ userAction: 'REJECT' }
+      data: { userAction: 'REJECT' } as DialogData
     });
 
     dialogRef.afterClosed().pipe(first()).subscribe((data: DialogData) => {

@@ -18,6 +18,12 @@ const appCheckoutRoutes: Routes = [
     data: { title: 'ORDER_HISTORY'}
   },
   {
+    path: 'history',
+    component: OrderHistoryComponent,
+    canActivate: [AuthGuard],
+    data: { title: 'ORDER_HISTORY' }
+  },
+  {
     path: '',
     component: CheckoutComponent,
     canActivate: [AuthGuard],

@@ -17,6 +17,7 @@ export class AuthGuard implements CanActivate {
             queryParams: { returnUrl: state.url }
           });
       }
+      this.authService.currUser = user;
       return loggedIn;
     }
 }
