@@ -17,7 +17,7 @@ const routes: Routes = [
   },
   // { path: 'admin', loadChildren: './admin/admin.module#AdminModule' },
  // { path: 'home', component: HomeComponent, data: { title: 'APP_HOME_PAGE' } },
-  { path: 'login', loadChildren: './login/login.module#LoginModule' },
+  { path: 'sign-in', loadChildren: './sign-in/sign-in.module#SignInModule' },
   { path: '', redirectTo: '', pathMatch: 'full' },
  // { path: '**', component: PageNotFoundComponent, data: { title: 'PAGE_NOT_FOUND_PAGE' } }
 ];

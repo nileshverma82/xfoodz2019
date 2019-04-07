@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NotificationsService } from 'src/app/core/notifications.service';
 
 
 @NgModule({
@@ -8,6 +7,6 @@ import { NotificationsService } from 'src/app/core/notifications.service';
   imports: [
     CommonModule
   ],
-  providers: [NotificationsService]
+  providers: []
 })
 export class CoreModule { }
