@@ -11,6 +11,7 @@ import { Fooditem } from 'src/app/core/models';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
+
 export class SearchComponent implements OnInit, OnDestroy {
   fooditem: Fooditem;
   orders: string[];

@@ -48,7 +48,7 @@ export class DbService {
     return this.currentFilter$.pipe(
       switchMap((filter) =>
         this.afs.collection<Fooditem>(this.dbProductRoot, ref => {
-          let query: firebase.firestore.Query = ref;
+          let query: firebase.firestore.Query = ref.orderBy('createdAt', 'desc');
           if (filter.orderType != null) {
             query = query.where('orderType', '==', filter.orderType);
           }
