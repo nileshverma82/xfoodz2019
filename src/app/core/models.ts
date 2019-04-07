@@ -7,6 +7,7 @@ export interface Fooditem {
     isModified?: boolean;
     modifiedAt?: Date;
     geoInfoFromAppUser?: boolean;
+    likeCount: number;
     // <product form fields>
     title?: string;
     description?: string;

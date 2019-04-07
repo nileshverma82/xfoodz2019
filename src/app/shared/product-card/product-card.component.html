@@ -7,8 +7,8 @@
   <div fxLayout="rwo wrap" fxLayoutAlign="space-between">
     <span class="mat-h3" [style.color]="fi.isNonVeg? 'red':'green'">{{fi.title}}</span>
     <div>
-      <mat-icon color="accent">favorite_border</mat-icon> 
-      <span style="vertical-align:35%">123</span>
+      <mat-icon [color]="fi.likeCount?'accent':null">favorite_border</mat-icon> 
+      <span style="vertical-align:35%">{{fi.likeCount?fi.likeCount:null}}</span>
     </div>
   </div>
 
