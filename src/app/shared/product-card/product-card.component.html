@@ -1,7 +1,7 @@
 <mat-card *ngIf="fooditem as fi">
   <div *ngIf="fooditem.images[0].url as previewURL">
     <img mat-card-image [src]="previewURL" class="card-image">
-    <span class="price">SGD {{fi.price}}</span>
+    <span class="price">CAD {{fi.price}}</span>
   </div>
 
   <div fxLayout="rwo wrap" fxLayoutAlign="space-between">
