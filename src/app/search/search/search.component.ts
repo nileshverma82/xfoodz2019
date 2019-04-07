@@ -14,6 +14,7 @@ import { Fooditem } from 'src/app/core/models';
 export class SearchComponent implements OnInit, OnDestroy {
   fooditem: Fooditem;
   orders: string[];
+  diets: boolean[];
   cuisines: string[];
   categories: string[];
   filterForm: FormGroup;
@@ -25,6 +26,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     private router: Router,
     private fb: FormBuilder) {
     this.orders = [];
+    this.diets = [];
     this.cuisines = [];
     this.categories = [];
     this.filterSubscription = this.db.currentFilter$.subscribe(filters => {
@@ -49,6 +51,10 @@ export class SearchComponent implements OnInit, OnDestroy {
         this.fooditem = fi;
         if (this.orders.indexOf(fi.orderType) === -1) {
           this.orders.push(fi.orderType);
+        }
+
+        if (this.diets.indexOf(fi.isNonVeg) === -1) {
+          this.diets.push(fi.isNonVeg);
         }
 
         if (this.cuisines.indexOf(fi.cuisine) === -1) {

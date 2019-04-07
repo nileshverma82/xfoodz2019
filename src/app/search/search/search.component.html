@@ -1,26 +1,24 @@
 <div [formGroup]="filterForm" *ngIf="fooditem">
- 
+
   <mat-card fxLayout="column">
-    
+
     <mat-list #orderType>
       <mat-radio-group formControlName="orderType">
-      <mat-list-item role="listitem" *ngFor="let order of orders; let i = index">
-        <mat-radio-button #radio [value]="order" (change)="selection = $event.value">
-          {{order}}
-        </mat-radio-button>
-      </mat-list-item>
+        <mat-list-item role="listitem" *ngFor="let order of orders; let i = index">
+          <mat-radio-button #radio [value]="order" (change)="selection = $event.value">
+            {{order}}
+          </mat-radio-button>
+        </mat-list-item>
       </mat-radio-group>
     </mat-list>
 
-    
     <h3>Select Food Type</h3>
     <mat-list #orderType>
       <mat-radio-group formControlName="isNonVeg">
-        <mat-list-item>
-          <mat-radio-button value="Veg">Veg</mat-radio-button>
-        </mat-list-item>
-        <mat-list-item>
-          <mat-radio-button value="Non-Veg">Non-Veg</mat-radio-button>
+        <mat-list-item role="listitem" *ngFor="let diet of diets; let i = index">
+          <mat-radio-button #radio [value]="diet?'Non-Veg':'Veg'" (change)="selection = $event.value">
+            {{diet?'Non-Veg':'Veg'}}
+          </mat-radio-button>
         </mat-list-item>
       </mat-radio-group>
     </mat-list>
@@ -30,12 +28,12 @@
     <h3>Browse by Cuisine</h3>
 
     <mat-list role="list">
-      <mat-radio-group formControlName="cuisine" >
-      <mat-list-item role="listitem" *ngFor="let cuisine of cuisines; let i = index">
-        <mat-radio-button #radio [value]="cuisine" (change)="selection = $event.value">
-          {{cuisine}}
-        </mat-radio-button>
-      </mat-list-item>
+      <mat-radio-group formControlName="cuisine">
+        <mat-list-item role="listitem" *ngFor="let cuisine of cuisines; let i = index">
+          <mat-radio-button #radio [value]="cuisine" (change)="selection = $event.value">
+            {{cuisine}}
+          </mat-radio-button>
+        </mat-list-item>
       </mat-radio-group>
     </mat-list>
 
