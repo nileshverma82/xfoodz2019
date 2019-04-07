@@ -3,6 +3,7 @@ import { AuthService } from 'src/app/core/auth.service';
 import { Fooditem } from 'src/app/core/models';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppCartService } from 'src/app/app-cart/app-cart.service';
+import { NotificationsService } from 'src/app/core/notifications.service';
 
 @Component({
   selector: 'app-detail',
@@ -18,7 +19,7 @@ export class DetailComponent implements OnInit, OnDestroy {
     public auth: AuthService,
     private route: ActivatedRoute,
     private router: Router,
-    private cartService: AppCartService
+    private cartService: AppCartService,
   ) {}
 
   ngOnInit() {

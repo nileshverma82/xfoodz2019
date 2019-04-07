@@ -24,12 +24,13 @@ export class DbService {
 
   currentFilter$: BehaviorSubject<Filter | null>;
   fooditems$: Observable<Fooditem[]>;
-  // currentFilter: Filter;
+  displayWelcomeMsg: boolean;
 
   constructor(
     private afs: AngularFirestore,
     private notify: SnackbarNotificationService
   ) {
+    this.displayWelcomeMsg = true;
     this.currentFilter$ = new BehaviorSubject({});
     this.fooditems$ = this.getProductList();
   }
@@ -114,10 +115,13 @@ export class DbService {
       .pipe(
         first(),
         tap(user => {
-          if (user) {
-            this.notify.openSnackBar('Welcome ' + user.displayName);
-          } else {
-            this.notify.openSnackBar('Welcome Guest');
+          if (this.displayWelcomeMsg) {
+            if (user) {
+              this.notify.openSnackBar('Welcome ' + user.displayName);
+            } else {
+              this.notify.openSnackBar('Welcome Guest');
+            }
+            this.displayWelcomeMsg = false;
           }
         })
       );
