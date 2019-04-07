@@ -12,7 +12,8 @@ import { Fooditem } from 'src/app/core/models';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit, OnDestroy {
-
+  fooditem: Fooditem;
+  orders: string[];
   cuisines: string[];
   categories: string[];
   filterForm: FormGroup;
@@ -23,6 +24,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     private db: DbService,
     private router: Router,
     private fb: FormBuilder) {
+    this.orders = [];
     this.cuisines = [];
     this.categories = [];
     this.filterSubscription = this.db.currentFilter$.subscribe(filters => {
@@ -44,6 +46,11 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.subscription = this.db.fooditems$.pipe(
       flatMap((fooditems: Fooditem[]) => fooditems),
     ).subscribe(fi => {
+        this.fooditem = fi;
+        if (this.orders.indexOf(fi.orderType) === -1) {
+          this.orders.push(fi.orderType);
+        }
+
         if (this.cuisines.indexOf(fi.cuisine) === -1) {
           this.cuisines.push(fi.cuisine);
         }

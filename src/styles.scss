@@ -2,8 +2,9 @@
 
 $white:#FFF;
 $grey:#777;
-$green:#00b279;
-$orange:#f75d34;
+$mat-primary:#009688; // Mat Primary color value
+$mat-accent:#f4511e; // Mat Primary color value
+$mat-warning:red; // Mat Primary color value
 
 * {
   font-weight: normal;
@@ -50,7 +51,7 @@ app-fab-action {
 .productBox>:last-child:not(.mat-card-footer){border-top: 1px solid #e5e5e5;}    
 .productImg .mat-card-image{ max-height: 200px; overflow: hidden;}
 .price{position: absolute;top: 0px;left: -8px; padding: 6px 12px;
-    background: rgba(0,0,0,0.85); color: $white;font-weight:bold;
+    background: $mat-primary; color: $white;font-weight:bold;
     border-color: rgb(30, 32, 35) transparent;
 }
 .price:before {
@@ -68,7 +69,7 @@ app-fab-action {
 button i{ display: inline-block; vertical-align: middle;}
 .user-card{ text-align: center;}
 .sidenav{width:300px !important;}
-.user-card{background: $orange !important; color:$white !important;padding: 15px 24px !important;}
+.user-card{background: $mat-accent !important; color:$white !important;padding: 15px 24px !important;}
 .nav-list .mat-icon{color:$grey; margin-right: 10px; font-size:28px !important;height: 28px !important; width: 28px !important;}
   .mat-toolbar-row, .mat-toolbar-single-row {
     height: 50px !important;

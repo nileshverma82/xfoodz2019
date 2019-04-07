@@ -114,7 +114,11 @@ export class DbService {
       .pipe(
         first(),
         tap(user => {
-          this.notify.openSnackBar('Welcome ' + user.displayName);
+          if (user) {
+            this.notify.openSnackBar('Welcome ' + user.displayName);
+          } else {
+            this.notify.openSnackBar('Welcome Guest');
+          }
         })
       );
   }

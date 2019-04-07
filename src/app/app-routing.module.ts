@@ -11,6 +11,7 @@ const routes: Routes = [
       { path: 'chat', loadChildren: './chat/chat.module#ChatModule' },
       { path: 'search', loadChildren: './search/search.module#SearchModule' },
       { path: 'user', loadChildren: './user/user.module#UserModule' },
+      { path: 'admin', loadChildren: './app-admin/app-admin.module#AppAdminModule' },
       { path: '', loadChildren: './product/product.module#ProductModule' },
     ]
   },

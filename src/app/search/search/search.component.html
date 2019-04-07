@@ -1,14 +1,13 @@
-<div [formGroup]="filterForm">
+<div [formGroup]="filterForm" *ngIf="fooditem">
  
   <mat-card fxLayout="column">
     
-    <mat-list #orderType >
+    <mat-list #orderType>
       <mat-radio-group formControlName="orderType">
-      <mat-list-item>
-        <mat-radio-button value="instant">Ready2Eat</mat-radio-button>
-      </mat-list-item>
-      <mat-list-item>
-        <mat-radio-button value="preOrder">Pre-Order</mat-radio-button>
+      <mat-list-item role="listitem" *ngFor="let order of orders; let i = index">
+        <mat-radio-button #radio [value]="order" (change)="selection = $event.value">
+          {{order}}
+        </mat-radio-button>
       </mat-list-item>
       </mat-radio-group>
     </mat-list>

@@ -1,4 +1,4 @@
-<mat-card *ngIf="fooditem as fi" class="productBox">
+<mat-card *ngIf="fooditem as fi">
   <div *ngIf="fooditem.images[0].url as previewURL">
     <img mat-card-image [src]="previewURL" class="card-image">
     <span class="price">SGD {{fi.price}}</span>
@@ -17,6 +17,7 @@
     <br>
     <span class="mat-h3">Availability: [ {{ fi.availability }} ]</span>
   </mat-card-content>
+  
 
   <div fxLayout="row wrap" fxLayoutAlign="space-between">
     <div>
