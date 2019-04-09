@@ -1,7 +1,7 @@
 <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-around stretch">
   <app-product-card xFlex="0 1 48" fxFlex.lg="0 1 32" fxFlexOrder.xs="1" [fooditem]="fooditem"></app-product-card>
 
-<mat-card fxFlex="0 1 48" fxFlex.lg="0 1 32" fxFlexOrder.xs="2">
+  <!-- <mat-card fxFlex="0 1 48" fxFlex.lg="0 1 32" fxFlexOrder.xs="2">
   <h3>Payment and delivery options</h3>
   <mat-selection-list>
     <mat-list-option [selected]="fooditem.cashOnDelivery">
@@ -20,33 +20,59 @@
       Dine in
     </mat-list-option>
   </mat-selection-list>
-</mat-card>
+</mat-card> -->
 
-<mat-card fxFlex="0 1 48" fxFlex.lg="0 1 98" fxFlexOrder.xs="3">
-  <mat-card-header>
-    <div mat-card-avatar [style.background-image]="'url('+ fooditem.images[0] +')'" [style.background-size]="'cover'"></div>
-    <mat-card-title>
-      <h3>Ambikesh</h3>
-    </mat-card-title>
-    <mat-card-subtitle>
-      <h3>{{fooditem.geoInfo.autoAddressFromMap}}</h3>
-    </mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
-    <h3>Hello food lover! Serving you authentic north indian food. Please check my other food posts as well.</h3>
-  </mat-card-content>
-  <h3>More from Ambikesh</h3>
+  <mat-card fxFlex="0 1 48" fxFlex.lg="0 1 32" fxFlexOrder.xs="2">
+    <h3>Payment and delivery options</h3>
+    <mat-list>
+      <mat-list-item *ngIf="fooditem.cashOnDelivery">
+        <mat-icon color="primary">attach_money</mat-icon>
+        <h3 mat-line>Cash On Delivery</h3>
+      </mat-list-item>
+      <mat-list-item *ngIf="fooditem.onlinePayment">
+        <mat-icon color="primary">payment</mat-icon>
+        <h3 mat-line>Pay Online</h3>
+      </mat-list-item>
+      <mat-divider style="width:90%"></mat-divider>
+      <mat-list-item *ngIf="fooditem.takeAway">
+        <mat-icon color="primary">transfer_within_a_station</mat-icon>
+        <h3 mat-line>Take away</h3>
+      </mat-list-item>
+      <mat-list-item *ngIf="fooditem.homeDelivery">
+        <mat-icon color="primary">home</mat-icon>
+        <h3 mat-line>Home delivery</h3>
+      </mat-list-item>
+      <mat-list-item *ngIf="fooditem.dineIn">
+        <mat-icon color="primary">restaurant_menu</mat-icon>
+        <h3 mat-line>Dine In</h3>
+      </mat-list-item>
+    </mat-list>
+  </mat-card>
 
-  <!-- <mat-grid-list cols="3">
+  <mat-card fxFlex="0 1 48" fxFlex.lg="0 1 32" fxFlexOrder.xs="3">
+    <mat-card-header>
+      <div 
+        mat-card-avatar 
+        [style.background-image]="'url('+ fooditem.createdBy.photoUrl +')'" 
+        [style.background-size]="'cover'">
+      </div>
+      <mat-card-title>{{fooditem.createdBy.name}}</mat-card-title>
+      <mat-card-subtitle>{{fooditem.geoInfo.autoAddressFromMap}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <h3>Hello food lover! Serving you authentic north indian food. Please check my other food posts as well.</h3>
+    </mat-card-content>
+    <h3>More from Ambikesh</h3>
+
+    <!-- <mat-grid-list cols="3">
       <mat-grid-tile *ngFor="let fooditem of fooditems$|async">
         <img mat-card-image [src]="fooditem.images[0]">
       </mat-grid-tile>
     </mat-grid-list> -->
 
-</mat-card>
+  </mat-card>
 
-  <app-fab-action 
-    [fabIcon]="fooditem.createdBy.id === (this.auth.currUser$|async)?.uid?'edit':'add'"
+  <app-fab-action [fabIcon]="fooditem.createdBy.id === (this.auth.currUser$|async)?.uid?'edit':'add'"
     (fabActionEvent)="onClickFab($event)">
   </app-fab-action>
 </div>
