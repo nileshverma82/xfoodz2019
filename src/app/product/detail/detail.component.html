@@ -1,29 +1,40 @@
 <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-around stretch">
-  <app-product-card xFlex="0 1 48" fxFlex.lg="0 1 32" fxFlexOrder.xs="1" [fooditem]="fooditem"></app-product-card>
+  <!-- <app-product-card 
+    fxFlex="0 1 48" 
+    fxFlex.lg="0 1 32" 
+    fxFlexOrder.xs="1"
+    [fooditem]="fooditem">
+  </app-product-card> -->
 
-  <!-- <mat-card fxFlex="0 1 48" fxFlex.lg="0 1 32" fxFlexOrder.xs="2">
-  <h3>Payment and delivery options</h3>
-  <mat-selection-list>
-    <mat-list-option [selected]="fooditem.cashOnDelivery">
-      Cash of delivery
-    </mat-list-option>
-    <mat-list-option [selected]="fooditem.onlinePayment">
-      Pay online
-    </mat-list-option>
-    <mat-list-option [selected]="fooditem.takeAway">
-      Take away
-    </mat-list-option>
-    <mat-list-option [selected]="fooditem.homeDelivery">
-      Home delivery
-    </mat-list-option>
-    <mat-list-option [selected]="fooditem.dineIn">
-      Dine in
-    </mat-list-option>
-  </mat-selection-list>
-</mat-card> -->
+  <mat-card fxFlex="0 1 48" fxFlex.lg="0 1 32" fxFlexOrder.xs="1">
+    <div *ngIf="preview">
+      <img mat-card-image [src]="preview">
+    
+      <mat-grid-list *ngIf="fooditemImageCount > 1" cols="4">
+        <mat-grid-tile *ngFor="let img of fooditem.images">
+          <img mat-card-image 
+            [src]="img.url" 
+            (click)="preview = img.url">
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+
+    <div fxLayout="rwo wrap" fxLayoutAlign="space-between">
+        <span>CAD {{fooditem.price}}</span>
+      <div>
+        <mat-icon [color]="fooditem.likeCount?'accent':null">favorite_border</mat-icon>
+        <span class="align-with-icon">{{fooditem.likeCount?fooditem.likeCount:null}}</span>
+      </div>
+    </div>
+    <mat-card-content>{{fooditem.description}}</mat-card-content>
+
+  </mat-card>
+
+  
 
   <mat-card fxFlex="0 1 48" fxFlex.lg="0 1 32" fxFlexOrder.xs="2">
-    <h3>Payment and delivery options</h3>
+
+    <h3>Payment & Delivery options</h3>
     <mat-list>
       <mat-list-item *ngIf="fooditem.cashOnDelivery">
         <mat-icon color="primary">attach_money</mat-icon>
@@ -33,7 +44,10 @@
         <mat-icon color="primary">payment</mat-icon>
         <h3 mat-line>Pay Online</h3>
       </mat-list-item>
-      <mat-divider style="width:90%"></mat-divider>
+      </mat-list>
+      <mat-divider style="width:90%; margin-left: 5%"></mat-divider>
+      <!-- <h3>Delivery options</h3> -->
+      <mat-list>
       <mat-list-item *ngIf="fooditem.takeAway">
         <mat-icon color="primary">transfer_within_a_station</mat-icon>
         <h3 mat-line>Take away</h3>
