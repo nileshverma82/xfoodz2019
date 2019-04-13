@@ -1,6 +1,6 @@
 <div *ngIf="order$|async as order" fxLayout="column">
   <mat-card mat-elevation="4">
-    <span>{{order.name}}</span>
+    <!-- <span>{{order.name}}</span> -->
     <mat-card-content>
       <app-cart-list [cartID]="cartID" [orderID]="order.id" (orderUpdate)="updateOrder($event)">
       </app-cart-list>
@@ -15,19 +15,33 @@
     </mat-toolbar> -->
 
   </mat-card>
-  <mat-card style="background-color: #009688">
-    <div fxLayout="row wrap" class="mat-h2">
-      <span>Amount Payable:</span>
-      <span class="spacer"></span>
-      <span>CAD {{order.amtPayable}}</span>
+  <mat-card class="mat-h3" style="background-color: lightgray">
+    <div fxLayout="row wrap" fxLayoutAlign="space-between">
+      <span>Order To</span>
+      <span>{{order.name}}</span>
     </div>
-    <mat-card-actions fxLayout="row wrap" fxLayoutAlign="space-between">
-      <mat-icon>attach_money</mat-icon>
-      <mat-icon>payment</mat-icon>
-      <mat-icon>transfer_within_a_station</mat-icon>
-      <mat-icon>home</mat-icon>
-      <mat-icon>restaurant_menu</mat-icon>
-    </mat-card-actions>
+
+    <div fxLayout="row wrap" fxLayoutAlign="space-between">
+      <span>Payment</span>
+      <span>COD </span>
+    </div>
+
+    <div fxLayout="row wrap" fxLayoutAlign="space-between">
+      <span>Delivery</span>
+      <span>Take away </span>
+    </div>
+
+    <div fxLayout="row wrap">
+      <span>Amount Payable</span>
+      <span class="spacer"></span>
+      <mat-chip-list>
+        <mat-chip color="primary" selected>
+          CAD {{order.amtPayable}}
+        </mat-chip>
+      </mat-chip-list>
+      <!-- <span></span> -->
+    </div>
+
   </mat-card>
   <app-fab-action [fabIcon]="'done'" (fabActionEvent)="onClickCheckout(order)">
   </app-fab-action>
