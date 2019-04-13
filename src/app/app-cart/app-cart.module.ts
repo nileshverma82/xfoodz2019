@@ -16,7 +16,7 @@ const appCartRoutes: Routes = [
     path: ':id',
     component: OrderReviewComponent,
     canActivate: [AuthGuard],
-    data: { title: 'ORDER_REVIEW' }
+    data: { title: 'ORDER_REVIEW_PAGE' }
   },
   {
     path: '',

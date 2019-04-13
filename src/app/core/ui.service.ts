@@ -81,6 +81,9 @@ export class UIService {
       case 'APP_CHECKOUT_PAGE':
         this.appToolBar$.next({ pageTitle: 'My Orders', showCancelIcon: true });
         break;
+      case 'ORDER_REVIEW_PAGE':
+        this.appToolBar$.next({ pageTitle: 'Order summary', showCancelIcon: true });
+        break;
       case 'APP_SEARCH_PAGE':
         this.appToolBar$.next({ pageTitle: 'Search', showCancelIcon: true });
         break;

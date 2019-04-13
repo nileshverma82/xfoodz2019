@@ -1,48 +1,34 @@
-<div *ngIf="order$|async as order">
+<div *ngIf="order$|async as order" fxLayout="column">
   <mat-card mat-elevation="4">
-    
+    <span>{{order.name}}</span>
     <mat-card-content>
       <app-cart-list [cartID]="cartID" [orderID]="order.id" (orderUpdate)="updateOrder($event)">
       </app-cart-list>
     </mat-card-content>
 
-    <mat-divider></mat-divider>
+    <!-- <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        {{order.name}}
+        <span class="spacer"></span>
+        CAD {{order.amtPayable}}
+      </mat-toolbar-row>
+    </mat-toolbar> -->
 
-    <h3 class="greyTitle">Payment Option</h3>
-    <div *ngIf="order.paymentOption=='online'">
-      <p>Payment option is {{order.paymentOption}}</p>
-    </div>
-    <div *ngIf="order.paymentOption=='cashOnDelivery'">
-      <p>Payment option is {{order.paymentOption}}</p>
-    </div>
-    <mat-divider></mat-divider>
-
-    <h3 class="greyTitle">Delivery Option</h3>
-    <div *ngIf="order.deliveryOption=='takeAway'">
-      <p>Delivery option is {{order.deliveryOption}}</p>
-    </div>
-    <div *ngIf="order.deliveryOption=='homeDelivery'">
-      <p>Delivery option is {{order.deliveryOption}}</p>
-      <!-- <app-user-address [userGeo]="me.geoInfo" (geoInfo)="geoInfoFromUser($event)"></app-user-address> -->
-    </div>
-    <div *ngIf="order.deliveryOption=='dinein'">
-      <p>Delivery option is {{order.deliveryOption}}</p>
-    </div>
-    <mat-divider></mat-divider>
-    <h3 class="greyTitle">Order Summary</h3>
-    <p>Served by: {{order.name}}</p>
-    <p>Amount Payable: SGD {{order.amtPayable}}</p>
-    <p>Discount: SGD {{order.discount}}</p>
-    
-    
-    <p>{{order|json}}</p>
-
-    <mat-card-actions align="end" class="m15lr">
-        <button  mat-raised-button color="primary" (click)="onClickCheckout(order)">
-        Order Now
-      </button>
-    </mat-card-actions>
-
-    <mat-divider></mat-divider>
   </mat-card>
+  <mat-card style="background-color: #009688">
+    <div fxLayout="row wrap" class="mat-h2">
+      <span>Amount Payable:</span>
+      <span class="spacer"></span>
+      <span>CAD {{order.amtPayable}}</span>
+    </div>
+    <mat-card-actions fxLayout="row wrap" fxLayoutAlign="space-between">
+      <mat-icon>attach_money</mat-icon>
+      <mat-icon>payment</mat-icon>
+      <mat-icon>transfer_within_a_station</mat-icon>
+      <mat-icon>home</mat-icon>
+      <mat-icon>restaurant_menu</mat-icon>
+    </mat-card-actions>
+  </mat-card>
+  <app-fab-action [fabIcon]="'done'" (fabActionEvent)="onClickCheckout(order)">
+  </app-fab-action>
 </div>

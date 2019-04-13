@@ -81,4 +81,6 @@ export class OrderReviewComponent implements OnInit {
   geoInfoFromUser(event) {
     console.log('geoInfoFromUser: ', event);
   }
+
+
 }

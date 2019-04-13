@@ -25,6 +25,7 @@ export class DialogCheckoutComponent implements OnInit {
                public dialogRef: MatDialogRef<DialogCheckoutComponent>,
                private fb: FormBuilder) {
       this.createForm();
+      console.log('From DialogCheckoutComponent: ', this.data);
     }
 
   ngOnInit() {
@@ -38,7 +39,7 @@ export class DialogCheckoutComponent implements OnInit {
   }
 
   prepareForm() {
-    console.log('TODO: Payment and Delivery options');
+    console.log('TODO: Payment and Delivery options', this.data);
   }
 
   onNoClick() {
