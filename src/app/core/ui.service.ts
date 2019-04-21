@@ -87,8 +87,10 @@ export class UIService {
       case 'APP_SEARCH_PAGE':
         this.appToolBar$.next({ pageTitle: 'Search', showCancelIcon: true });
         break;
-      case 'CHAT_PAGE':
-        this.appToolBar$.next({ pageTitle: 'Chat', showCancelIcon: true });
+      case 'APP_CHAT_PAGE':
+        this.appToolBar$.next({
+          pageTitle: `${routerData.order.seller.name}`,
+          showCancelIcon: true });
         break;
       case 'USER_PAGE':
         this.appToolBar$.next({

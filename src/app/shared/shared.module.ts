@@ -10,11 +10,13 @@ import { AppToolbarComponent } from './app-toolbar/app-toolbar.component';
 import { RouterModule } from '@angular/router';
 import { TruncatePipe } from './truncate.pipe';
 import { ImageManagerComponent } from './image-manager/image-manager.component';
+import { GooglePlacesDirective } from './google-places.directive';
 
 const SHARED_COMPONENTS = [
   AppToolbarComponent,
   DialogConfirmComponent,
   FabActionComponent,
+  GooglePlacesDirective,
   ImageManagerComponent,
   ProductCardComponent,
   TruncatePipe
@@ -27,7 +29,8 @@ const SHARED_COMPONENTS = [
     FabActionComponent,
     AppToolbarComponent,
     TruncatePipe,
-    ImageManagerComponent],
+    ImageManagerComponent,
+    GooglePlacesDirective],
   imports: [
     CommonModule,
     FlexLayoutModule,
