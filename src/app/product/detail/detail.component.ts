@@ -3,6 +3,7 @@ import { AuthService } from 'src/app/core/auth.service';
 import { Fooditem } from 'src/app/core/models';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppCartService } from 'src/app/app-cart/app-cart.service';
+import { SnackbarNotificationService } from 'src/app/core/snackbar-notification.service';
 
 @Component({
   selector: 'app-detail',
@@ -19,6 +20,7 @@ export class DetailComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private cartService: AppCartService,
+    private notification: SnackbarNotificationService
   ) {}
 
   ngOnInit() {
@@ -37,6 +39,7 @@ export class DetailComponent implements OnInit, OnDestroy {
           this.fooditem
         );
         this.router.navigate(['cart']);
+        this.notification.openSnackBar(`${this.fooditem.title} added to the cart!`);
         break;
       case 'edit':
         console.log('onClickFab: ', action);

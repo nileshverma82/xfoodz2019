@@ -29,13 +29,18 @@ export class AppCartComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.orders$ = this.auth.currUser$.pipe(
+    this.cartID = this.auth.currUser.uid;
+    this.orders$ = this.cartService.getAllOrders$(this.cartID);
+
+    /* [Below code with switchMap not required as AuthGuard handles currentUser issue.]
+      this.orders$ = this.auth.currUser$.pipe(
       switchMap(user => {
         this.cart = { id: user.uid, name: user.displayName };
         this.cartID = user.uid;
         return this.cartService.getAllOrders$(this.cartID);
       })
     );
+    */
   }
 
   updateOrder(order: { id: string, dataToUpdate: { qty: number, amtPayable: number } }) {
@@ -61,9 +66,9 @@ export class AppCartComponent implements OnInit {
   }
 
   onClickCheckout(orderID: string, name: string) {
-
-    const dialogRef = this.dialog.open(DialogCheckoutComponent, {
-      data: { cod: true, online: false }
+    const dialogRef = this.dialog.open(
+      DialogCheckoutComponent,
+      { data: { cod: true, online: false }
     });
 
     dialogRef.afterClosed().pipe(first()).subscribe( data => {
@@ -77,37 +82,6 @@ export class AppCartComponent implements OnInit {
           return of(null);
         }
     });
-
-
-    // dialogRef.afterClosed().pipe(
-    //   first(),
-    //   switchMap((data: DialogData) => {
-    //     if (data) {
-    //       return this.cartService.checkoutOrder(
-    //         this.cart,
-    //         { id: orderID, name: name },
-    //         data.paymentMethod,
-    //         data.deliveryMethod
-    //       ).pipe(
-    //         tap(checkedoutOrder => {
-    //           this.afs.collection('checkout').add(checkedoutOrder)
-    //             .then(() => {
-    //               console.log('Order Checked out successfully');
-    //               this.cartService.removeAllProducts(this.cartID, orderID)
-    //                 .then(() => {
-    //                   this.cartService.removeOrder(this.cartID, orderID);
-    //                 });
-    //               this.router.navigate(['/checkout']);
-    //             })
-    //             .catch(e => console.log('Error in order checkout: ', e));
-    //         })
-    //       );
-    //     } else {
-    //       console.log('Checkout cancelled by user');
-    //       return of(null);
-    //     }
-    //   })
-    // ).subscribe();
   } // onClickCheckout
 
 }
