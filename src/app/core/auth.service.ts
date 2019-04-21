@@ -42,7 +42,9 @@ export class AuthService {
   }
 
   getUser(): Promise<AppUser> {
-    return this.afAuth.authState.pipe(first()).toPromise();
+    // return this.afAuth.authState.pipe(first()).toPromise();
+    return this.currUser$.pipe(first()).toPromise();
+
   }
 
   loginAnonymously(): Promise<void> {
