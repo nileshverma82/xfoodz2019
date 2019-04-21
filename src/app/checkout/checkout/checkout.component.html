@@ -4,7 +4,7 @@
     <mat-tab>
       <ng-template mat-tab-label>
         <mat-icon>call_made</mat-icon>
-        <span>Orders Placed</span>
+        <span>Placed</span>
       </ng-template>
 
       <app-orderl-list [orderList$]="checkedoutOrders$" [orderType]="'placed'"></app-orderl-list>
@@ -13,7 +13,7 @@
     <mat-tab>
       <ng-template mat-tab-label>
         <mat-icon class="example-tab-icon">call_received</mat-icon>
-        <span>Orders Received</span>
+        <span>Received</span>
       </ng-template>
 
       <app-orderl-list [orderList$]="receivedOrders$" [orderType]="'received'"></app-orderl-list>

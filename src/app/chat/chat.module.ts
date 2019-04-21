@@ -9,15 +9,16 @@ import { CanDeactivateGuard } from '../core/can-deactivate.guard';
 import { MaterialModule } from '../material/material.module';
 import { FormsModule } from '@angular/forms';
 import { OrderResolver } from './order.resolver';
+import { AuthGuard } from '../core/auth.guard';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 const chatRoute: Routes = [
   {
     path: ':id',
     component: ChatComponent,
-    data: { title: 'PRODUCT_MANAGE_PAGE' },
+    data: { title: 'APP_CHAT_PAGE' },
     resolve: { order: OrderResolver },
-    canActivate: [AuthSocialGuard],
-    // canDeactivate: [CanDeactivateGuard]
+    canActivate: [AuthGuard],
   }
 ];
 
@@ -27,6 +28,7 @@ const chatRoute: Routes = [
     CommonModule,
     MaterialModule,
     FormsModule,
+    FlexLayoutModule,
     RouterModule.forChild(chatRoute)
 
   ],
