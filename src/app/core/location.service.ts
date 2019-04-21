@@ -1,11 +1,8 @@
 // Typescript tripple-slash directive to resolve googlemaps error
 /// <reference types="@types/googlemaps" />
 
-import { ElementRef, Injectable, NgZone } from '@angular/core';
-import * as firebase from 'firebase';
-import { BehaviorSubject, Observable, Observer } from 'rxjs';
-import { IGeoInfo } from './models';
-import { ScriptLoadService } from './script-load.service';
+import { ElementRef, Injectable } from '@angular/core';
+import { Observable, Observer } from 'rxjs';
 
 const GEOLOCATION_ERRORS = {
   'errors.location.unsupportedBrowser': 'Browser does not support location services',
@@ -17,18 +14,13 @@ const GEOLOCATION_ERRORS = {
 @Injectable({
   providedIn: 'root'
 })
+
 export class LocationService {
 
   myCurrentPosition: Observable<Position>;
-  geoFromAutoComplete$ = new BehaviorSubject<IGeoInfo>({});
 
-  isGoogle$ = new BehaviorSubject<any>(null);
-
-  googleScriptLoaded: boolean;
-
-  constructor(private load: ScriptLoadService, private ngZone: NgZone) {
+  constructor() {
     this.myCurrentPosition = this.getCurrentPosition();
-    this.googleScriptLoaded = false;
   }
 
   // retruns user position detected by browser navigator
@@ -62,18 +54,6 @@ export class LocationService {
     });
   }
 
-  // loadGoogleMapScript() {
-  //   if (!this.googleScriptLoaded ) {
-  //     this.load.loadScript(environment.googleMapURL, 'google-map', () => {
-  //       console.log('Google-Maps Initiated!!');
-  //       const googleMaps = window['google']['maps'];
-  //       this.isGoogle$.next(googleMaps);
-  //     });
-  //     this.googleScriptLoaded = true;
-
-  //   }
-  // }
-
   // Create a map with the marker.
   createMap(mapElement: ElementRef, myLat: any, myLng: any): google.maps.Map {
 
@@ -93,65 +73,4 @@ export class LocationService {
     return map;
   }
 
-  placeAutoComplete(searchElement: ElementRef) {
-    const autoComplete = new google.maps.places.Autocomplete(searchElement.nativeElement /*, {types: ['geocode']}*/);
-    autoComplete.addListener('place_changed', () => {
-      this.ngZone.run(() => {
-        const place = autoComplete.getPlace();
-        console.log('place ####: ', place);
-
-        if (place.geometry) {
-          const geoPoint = new firebase.firestore.GeoPoint(
-            place.geometry.location.lat(),
-            place.geometry.location.lng()
-          );
-
-          const geo: IGeoInfo = {
-            coordinates: geoPoint,
-            autoAddressFromMap: place.formatted_address,
-            addressFromUser: null
-          };
-
-        }
-      });
-
-    });
-  }
 }
-
-
-/*
-import { Injectable } from '@angular/core';
-
-const url = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAwVnwE1bEZf_Bkk_pSkGM0XlBSXJocVUY&callback=initMap';
-
-@Injectable()
-export class GmapService {
-
-      private loadAPI: Promise<any>;
-
-      constructor() {}
-
-      private loadScript(): void {
-          if (!document.getElementById('gmap')) {
-              const script = document.createElement('script');
-              script.type = 'text/javascript';
-              script.src = url;
-              script.id = 'gmap';
-              document.head.appendChild(script);
-          }
-      }
-
-      get init(): Promise<any> {
-          if (!this.loadAPI) {
-              this.loadAPI = new Promise((resolve) => {
-                window['initMap'] = (ev: any) => {
-                    resolve(window['google'].maps);
-                  };
-                this.loadScript();
-              });
-          }
-          return this.loadAPI;
-      }
-}
-*/
