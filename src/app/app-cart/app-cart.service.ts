@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import * as firebase from 'firebase';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { first, switchMap, tap, map, flatMap } from 'rxjs/operators';
+import { first, map, switchMap, tap } from 'rxjs/operators';
 import { AuthService } from '../core/auth.service';
 import { AppUser, Fooditem } from '../core/models';
 import { ICartDoc, ICartItem, ICheckout } from './app-cart.model';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,8 @@ export class AppCartService {
   cartColl: string;
   orderSubColl: string;
   itemSubColl: string;
+  increment;
+  decrement;
 
   currentUser: AppUser;
 
@@ -24,14 +27,8 @@ export class AppCartService {
     this.cartColl = 'appcart';
     this.orderSubColl = 'orders';
     this.itemSubColl = 'items';
-
-    // this.auth.currUser$.subscribe(user => {
-    //   if (user) {
-    //     console.log('AppCartService: CurrentUser: ', user);
-    //   } else {
-    //     console.log('AppCartService: CurrentUser: ', user);
-    //   }
-    // });
+    this.increment = firebase.firestore.FieldValue.increment(1);
+    this.decrement = firebase.firestore.FieldValue.increment(-1);
 
     this.auth.currUser$.pipe(
       switchMap((user: AppUser) => {
@@ -51,14 +48,18 @@ export class AppCartService {
   } // constructor
 
   getAllOrders$(cartID: string): Observable<ICartDoc[]> {
-    return this.afs.collection(this.cartColl).doc(cartID).collection<ICartDoc>(this.orderSubColl).valueChanges();
+    return this.afs.collection(this.cartColl)
+      .doc(cartID)
+      .collection<ICartDoc>(this.orderSubColl)
+      .valueChanges();
   }
 
   getOrdersById$(cartID: string, orderID: string) {
     return this.afs.collection(this.cartColl)
-      .doc(cartID).
-      collection(this.orderSubColl)
-      .doc<ICartDoc>(orderID).valueChanges();
+      .doc(cartID)
+      .collection(this.orderSubColl)
+      .doc<ICartDoc>(orderID)
+      .valueChanges();
   }
 
   getAllItems$(cartID: string, orderID: string): Observable<ICartItem[]> {
@@ -78,7 +79,7 @@ export class AppCartService {
       id: product.id,
       title: product.title,
       url: product.images[0].url,
-      qty: 1,
+      qty: this.increment,
       price: product.price,
     };
 
@@ -97,7 +98,7 @@ export class AppCartService {
     }).catch(e => {
       console.log('Error while updating the item: ', e);
     });
-   }
+  }
 
   removeProduct(cartID: string, orderID: string, itemID: string) {
     const productRef = this.afs.collection(this.cartColl).doc(cartID)
@@ -117,18 +118,20 @@ export class AppCartService {
       .collection(this.itemSubColl);
 
     return itemsCollRef.valueChanges().pipe(
-        first(),
-        tap(items => {
-          items.forEach( item => {
-            itemsCollRef.doc(item.id).delete();
-          });
-        })
-      ).toPromise();
+      first(),
+      tap(items => {
+        items.forEach(item => {
+          itemsCollRef.doc(item.id).delete();
+        });
+      })
+    ).toPromise();
   }
 
   manageProduct(buyerID: string, product: Fooditem) {
     const orderID = product.createdBy.id;
     const productID = product.id;
+
+    // const batch = this.afs.firestore.batch();
 
     const orederDocRef = this.afs.collection(this.cartColl).doc(buyerID)
       .collection(this.orderSubColl).doc<ICartDoc>(orderID);
@@ -140,8 +143,7 @@ export class AppCartService {
     this.productExist(productDocRef).then((resp: ICartItem) => {
       if (resp) {
         console.log('>>> Product present: UPDATE PRODUCT: ', resp);
-        const updatedQty = resp.qty + 1;
-        this.updateProduct(buyerID, orderID, productID, {qty: updatedQty});
+        this.updateProduct(buyerID, orderID, productID, { qty: this.increment });
       } else {
         console.log('>>> Product not prsent: ADD PRODUCT: ');
         this.addProduct(productDocRef, product);
@@ -165,7 +167,7 @@ export class AppCartService {
       id: product.createdBy.id,
       name: product.createdBy.name,
       state: 'Pending',
-      qty: 1,
+      qty: this.increment,
       amtPayable: product.price,
       discount: 0
     };
@@ -197,16 +199,16 @@ export class AppCartService {
     });
   }
 
-  checkoutOrder(buyer: { id: string, name: string }, seller: { id: string, name: string}, paymentMethod: string, deliveryMethod: string) {
+  checkoutOrder(buyer: { id: string, name: string }, seller: { id: string, name: string }, paymentMethod: string, deliveryMethod: string) {
     return this.afs.collection(this.cartColl).doc(buyer.id)
       .collection(this.orderSubColl).doc(seller.id)
       .collection(this.itemSubColl).valueChanges().pipe(
         first(),
-        map( items => {
-          const checkedoutOrder =  {
+        map(items => {
+          const checkedoutOrder = {
             buyer,
             seller,
-            currState: {state: 'Awaiting_Confirmation'},
+            currState: { state: 'Awaiting_Confirmation' },
             paymentOption: paymentMethod,
             deliveryOption: deliveryMethod,
             items,
@@ -214,7 +216,7 @@ export class AppCartService {
           } as ICheckout;
           console.log('checkedoutOrder: ', checkedoutOrder);
           return checkedoutOrder;
-        } )
+        })
       );
   }
 
