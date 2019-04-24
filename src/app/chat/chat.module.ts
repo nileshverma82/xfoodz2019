@@ -1,16 +1,13 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ChatComponent } from './chat/chat.component';
-import { Routes } from '@angular/router';
-import { RouterModule } from '@angular/router';
-import { ProductResolver } from '../product/product.resolver';
-import { AuthSocialGuard } from '../core/auth-social.guard';
-import { CanDeactivateGuard } from '../core/can-deactivate.guard';
-import { MaterialModule } from '../material/material.module';
-import { FormsModule } from '@angular/forms';
-import { OrderResolver } from './order.resolver';
-import { AuthGuard } from '../core/auth.guard';
+import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '../core/auth.guard';
+import { MaterialModule } from '../material/material.module';
+import { ProductResolver } from '../product/product.resolver';
+import { ChatComponent } from './chat/chat.component';
+import { OrderResolver } from './order.resolver';
 
 const chatRoute: Routes = [
   {

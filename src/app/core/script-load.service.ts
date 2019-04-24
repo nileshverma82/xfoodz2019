@@ -16,10 +16,6 @@ export class ScriptLoadService {
     this.myScript = { name: null, loaded: false, src: null };
   }
 
-  load(script: string) {
-
-  }
-
   loadScript(script: { name: string, url: string, id: string }) {
     return new Promise((resolve, reject) => {
       if (this.myScript.loaded) {
@@ -29,6 +25,7 @@ export class ScriptLoadService {
         script2Load.type = 'text/javascript';
         script2Load.src = script.url;
         script2Load.id = script.id;
+        script2Load.async = true;
         if (script2Load.readyState) {
           script2Load.onreadystatechange = () => {
             if (script2Load.readyState === 'loaded' || script2Load.readyState === 'complete') {
@@ -44,7 +41,7 @@ export class ScriptLoadService {
           };
         }
         script2Load.onerror = (e: Error) => {
-          return resolve({ name: script.name, loaded: false, status: 'Failed_2_Loaded' });
+          return resolve({ name: script.name, loaded: false, status: 'Failed_2_Load' });
         };
         document.head.appendChild(script2Load);
       }
