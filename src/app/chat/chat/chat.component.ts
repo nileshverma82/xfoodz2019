@@ -3,7 +3,7 @@ import { ChatMessage, Fooditem, ChatRoomInfo, AppUser } from '../../core/models'
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../core/auth.service';
-import { map } from 'rxjs/operators';
+import { map, flatMap, tap } from 'rxjs/operators';
 import { ChatService } from '../chat.service';
 import { NgModule } from '@angular/core';
 
@@ -23,9 +23,10 @@ export class ChatComponent implements OnInit {
   order: any;
 
   orderId: string;
+  notMe;
 
   constructor(private route: ActivatedRoute, private chatService: ChatService,
-              private authService: AuthService) {
+              public authService: AuthService) {
     this.orderId = route.snapshot.paramMap.get('id');
   }
 
@@ -39,12 +40,13 @@ export class ChatComponent implements OnInit {
     }
   }
 
-setupChatRoom($event) {
+setupChatRoom() {
     console.log('chat message entered', this.inputMessageText);
     this.newChatMessage.message = this.inputMessageText;
     this.newChatMessage.createdByUserId = this.authService.currUser.uid;
     console.log('from setupChatRoom', this.newChatMessage);
     this.chatService.createChatMessages(this.newChatMessage, this.orderId);
+    this.inputMessageText = '';
   }
   getChatbyQuery() {
     this.chatMessages$ = this.chatService.getChatRoomMessages(this.orderId);

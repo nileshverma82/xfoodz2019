@@ -37,9 +37,9 @@
       </div>
 
       <button *ngIf="order.currState.state=='Confirmed'" mat-icon-button (click)="enableChat(order.id)">
-        <mat-icon color="accent">chat_bubble_outline</mat-icon>
+        <mat-icon color="accent" [matBadgeHidden]="order.isRead || order.isRead === NULL" matBadge="1" matBadgeColor="warn">chat_bubble_outline</mat-icon>
       </button>
-
+ 
     </mat-card>
 
   </mat-card>

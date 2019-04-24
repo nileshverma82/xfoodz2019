@@ -28,7 +28,8 @@ export class ChatService {
   private chatRoomRef: AngularFirestoreCollection<ChatMessage>;
   FooditemID$: BehaviorSubject<string>;
   chatMessages$: BehaviorSubject<ChatMessage[]>;
-  sellerChatMessages: Observable<ChatMessage[]>;
+  
+
 
   roomID$: BehaviorSubject<any>;
 
@@ -63,8 +64,14 @@ export class ChatService {
   }
 
   async createChatMessages( message: ChatMessage, roomID: string) {
+    const batch = this.afs.firestore.batch();
     message.msgCreatedAt = this.serverTimestampFromFirestore;
-    this.chatRoomRef.doc(roomID).collection('conversation').add(message);
+    const roomRef = this.afs.firestore.collection(APP_ROOT_COLLECTIONS.CHATS).doc(roomID).collection('conversation').doc();
+    batch.set(roomRef, message);
+    batch.set(this.afs.firestore.collection('checkout').doc(roomID), { isRead: false }, { merge: true });
+    batch.commit();
+
+
   }
 
   getChatRoomMetaData(sellerID: string): Observable<any> {

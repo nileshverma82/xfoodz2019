@@ -1,17 +1,29 @@
-<div>
-  <div class="speech-bubble" style="border-color: #7c7fbc; background: #7c7fbc;  color: white"
-    *ngFor="let msg of chatMessages$|async">
-    {{msg.message}}
-   
-  </div>
-</div>
+<mat-card fxLayout="column">
+  <mat-list>
+    <mat-list-item 
+      *ngFor="let msg of chatMessages$|async">
+      <h3 matLine [align]="msg.createdByUserId == this.authService.currUser.uid? 'right':'left'"> {{msg.message}} </h3>
+      <!-- <p matLine align="right"> -->
+        <!-- <span> {{msg.createdByUserId}} </span> -->
+      <!-- </p> -->
+    </mat-list-item>
+  </mat-list>
 
 
-<div class="bottom" id="bottom" *ngIf="true" fxLayout="row" fxLayoutAlign="start center">
+<mat-form-field style="width: 100%">
+  <textarea matInput type="text" placeholder="Message" [(ngModel)]="inputMessageText" (keydown.enter)="setupChatRoom()"></textarea>
+  <button mat-button matSuffix mat-icon-button (click)="setupChatRoom()">
+    <mat-icon >send</mat-icon>
+  </button>
+</mat-form-field>
+
+</mat-card>
+
+<!-- <div class="bottom" id="bottom" *ngIf="true" fxLayout="row" fxLayoutAlign="start center">
   <textarea class="input" id="message-text-input" fxFlex title="New message text" [(ngModel)]="inputMessageText"
     (keydown.enter)="setupChatRoom($event)">
   </textarea>
 
   <button mat-icon-button class="send" [disabled]="!inputMessageText" (click)="setupChatRoom($event)">
     <mat-icon>send</mat-icon>
-  </button>
+  </button> -->
