@@ -11,9 +11,13 @@ import { RouterModule } from '@angular/router';
 import { TruncatePipe } from './truncate.pipe';
 import { ImageManagerComponent } from './image-manager/image-manager.component';
 import { GooglePlacesDirective } from './google-places.directive';
+import { AddressWithMapComponent } from './address-with-map/address-with-map.component';
+import { FormsModule } from '@angular/forms';
+import { GoogleMapDirective } from './google-map.directive';
 
 const SHARED_COMPONENTS = [
   AppToolbarComponent,
+  AddressWithMapComponent,
   DialogConfirmComponent,
   FabActionComponent,
   GooglePlacesDirective,
@@ -30,10 +34,13 @@ const SHARED_COMPONENTS = [
     AppToolbarComponent,
     TruncatePipe,
     ImageManagerComponent,
-    GooglePlacesDirective],
+    GooglePlacesDirective,
+    AddressWithMapComponent,
+    GoogleMapDirective],
   imports: [
     CommonModule,
     FlexLayoutModule,
+    FormsModule,
     LayoutModule,
     MaterialModule,
     RouterModule

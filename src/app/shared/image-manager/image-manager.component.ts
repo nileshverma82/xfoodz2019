@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, OnChanges, OnDestroy } 
 import { Observable, Subscription } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { tap, finalize } from 'rxjs/operators';
-import { Fooditem } from 'src/app/core/model';
+import { Fooditem } from 'src/app/core/models';
 
 interface Image {
   path: string;

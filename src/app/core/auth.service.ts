@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { auth } from 'firebase/app';
 import { Observable, of } from 'rxjs';
 import { first, switchMap, tap } from 'rxjs/operators';
-import { AppUser } from './models';
+import { AppUser, IGeoInfo } from './models';
 import { SnackbarNotificationService } from './snackbar-notification.service';
 import { DbService } from './db.service';
 
@@ -47,7 +47,7 @@ export class AuthService {
 
   }
 
-  loginAnonymously(): Promise<void> {
+  loginAnonymously(geo: IGeoInfo): Promise<void> {
     console.log('#Event: loginAnonymously()#');
     return this.afAuth.auth.signInAnonymously()
       .then((credential: firebase.auth.UserCredential) => {
@@ -55,6 +55,7 @@ export class AuthService {
         const anomymousUser: AppUser = {
           uid: credential.user.uid,
           isAnonymous: credential.user.isAnonymous,
+          geoInfo: geo,
           displayName: 'Guest',
           photoURL: 'anonymous-user'
         };
@@ -70,7 +71,7 @@ export class AuthService {
         });
   }
 
-  async googleSignin() {
+  async googleSignin(geo: IGeoInfo) {
     try {
       const provider = new auth.GoogleAuthProvider();
       const credential: firebase.auth.UserCredential = await this.afAuth.auth.signInWithPopup(
@@ -81,10 +82,9 @@ export class AuthService {
         uid: credential.user.uid,
         isAnonymous: credential.user.isAnonymous,
         displayName: credential.user.displayName,
-        email: credential.user.email,
         photoURL: credential.user.photoURL,
         providerId: credential.user.providerId,
-        phoneNumber: credential.user.phoneNumber
+        geoInfo: geo
       };
       this.db.addUpdateUser(googleUser);
     } catch (e) {

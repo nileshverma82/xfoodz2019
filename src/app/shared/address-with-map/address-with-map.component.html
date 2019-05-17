@@ -1,0 +1,38 @@
+<form fxLayout="column" (ngSubmit)="onSubmit()" #addressForm="ngForm">
+  <mat-form-field appearance="outline">
+    <input 
+      matInput
+      placeholder="Enter your address"
+      id="addressFromMap"
+      required
+      [(ngModel)]="geoInfo.autoAddressFromMap"
+      name="mapAddress"
+      appPlaceAutoComplete
+      (addressFromMap)="getAddressFromMap($event)">
+    <mat-icon matSuffix>location_on</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="additionalAddress" appearance="outline">
+    <input 
+      matInput 
+      placeholder="Additional address..."
+      required
+      [(ngModel)]="geoInfo.addressFromUser"
+      name="userAddress">
+  </mat-form-field>
+
+  <div 
+    *ngIf="includeMap && geoInfo.coordinates" 
+    appGoogleMap [latLng]="geoInfo.coordinates" 
+    style="height: 200px; border-style: ridge"></div>
+
+  <!-- <div>
+  <button mat-icon-button  color="accent" (click)="addressForm.reset()">
+    <mat-icon>clear</mat-icon>
+  </button>
+  <button mat-icon-button color="primary" type="submit" [disabled]="!addressForm.valid">
+    <mat-icon>done</mat-icon>
+  </button>
+  </div> -->
+
+</form>

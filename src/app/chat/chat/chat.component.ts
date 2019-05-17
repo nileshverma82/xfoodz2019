@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ChatMessage, Fooditem, ChatRoomInfo, AppUser } from '../../core/models';
-import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { AuthService } from '../../core/auth.service';
-import { map, flatMap, tap } from 'rxjs/operators';
+import { AppUser, ChatMessage } from '../../core/models';
 import { ChatService } from '../chat.service';
-import { NgModule } from '@angular/core';
 
 
 @Component({
@@ -15,7 +13,7 @@ import { NgModule } from '@angular/core';
 })
 export class ChatComponent implements OnInit {
 
-  newChatMessage: ChatMessage = {};
+  newChatMessage: ChatMessage = null;
   chatMessages$: Observable<ChatMessage[]>;
   chatMessage: ChatMessage[];
 
@@ -40,7 +38,7 @@ export class ChatComponent implements OnInit {
     }
   }
 
-setupChatRoom() {
+  setupChatRoom() {
     console.log('chat message entered', this.inputMessageText);
     this.newChatMessage.message = this.inputMessageText;
     this.newChatMessage.createdByUserId = this.authService.currUser.uid;
@@ -58,8 +56,8 @@ setupChatRoom() {
     });
   }
 
-ngOnInit() {
+  ngOnInit() {
     this.order = this.route.snapshot.data.order;
     this.getChatbyQuery();
-}
+  }
 }

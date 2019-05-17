@@ -1,31 +1,22 @@
 <div [formGroup]="filterForm" *ngIf="fooditem">
 
   <mat-card fxLayout="column">
+    <div fxLayout="row wrap">
+      <mat-slide-toggle color="primary" formControlName="isNonVeg">
+        Non-Veg Only
+      </mat-slide-toggle>
+      <span class="spacer"></span>
+      <mat-slide-toggle formControlName="orderType">
+        Ready2Eat
+      </mat-slide-toggle>
+    </div>
+    <br>
 
-    <mat-list #orderType>
-      <mat-radio-group formControlName="orderType">
-        <mat-list-item role="listitem" *ngFor="let order of orders; let i = index">
-          <mat-radio-button #radio [value]="order" (change)="selection = $event.value">
-            {{order}}
-          </mat-radio-button>
-        </mat-list-item>
-      </mat-radio-group>
-    </mat-list>
-
-    <h3>Select Food Type</h3>
-    <mat-list #orderType>
-      <mat-radio-group formControlName="isNonVeg">
-        <mat-list-item role="listitem" *ngFor="let diet of diets; let i = index">
-          <mat-radio-button #radio [value]="diet?'Non-Veg':'Veg'" (change)="selection = $event.value">
-            {{diet?'Non-Veg':'Veg'}}
-          </mat-radio-button>
-        </mat-list-item>
-      </mat-radio-group>
-    </mat-list>
-
-    <mat-divider></mat-divider>
-
-    <h3>Browse by Cuisine</h3>
+    <div fxLayout="row wrap">
+      <span class="align-with-icon mat-h2">Browse by Cuisine</span>
+      <span class="spacer"></span>
+      <mat-icon>clear</mat-icon>
+    </div>
 
     <mat-list role="list">
       <mat-radio-group formControlName="cuisine">
@@ -37,7 +28,11 @@
       </mat-radio-group>
     </mat-list>
 
-    <h3>Browse by Category</h3>
+    <div fxLayout="row wrap">
+      <span class="align-with-icon mat-h2">Browse by Category</span>
+      <span class="spacer"></span>
+      <mat-icon>clear</mat-icon>
+    </div>
 
     <mat-list role="list">
       <mat-radio-group formControlName="category">

@@ -6,6 +6,7 @@ import { flatMap } from 'rxjs/operators';
 import { DbService, Filter } from 'src/app/core/db.service';
 import { Fooditem } from 'src/app/core/models';
 
+
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -68,8 +69,13 @@ export class SearchComponent implements OnInit, OnDestroy {
       });
   }
 
+  orderTypeChage(orderType) {
+    console.log('Order type changed... ', this.filterForm);
+  }
+
   applySearch(filter: Filter) {
     // Remove properties with NULL values
+    console.log('Filter: ', filter);
     Object.keys(filter).forEach((key) => (filter[key] == null) && delete filter[key]);
     this.db.applyFilter(filter);
     this.router.navigateByUrl('/');

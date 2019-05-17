@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 import { delay, take } from 'rxjs/operators';
-import { Fooditem } from '../core/models';
 import { DbService } from '../core/db.service';
+import { Fooditem } from '../core/models';
 
 
 @Injectable()

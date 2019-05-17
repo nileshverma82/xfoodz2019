@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ShellComponent } from 'src/app/shell/shell.component';
+import { HomeComponent } from './home/home.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
@@ -16,10 +18,10 @@ const routes: Routes = [
     ]
   },
   // { path: 'admin', loadChildren: './admin/admin.module#AdminModule' },
- // { path: 'home', component: HomeComponent, data: { title: 'APP_HOME_PAGE' } },
+  { path: 'home', component: HomeComponent, data: { title: 'APP_HOME_PAGE' } },
   { path: 'sign-in', loadChildren: './sign-in/sign-in.module#SignInModule' },
   { path: '', redirectTo: '', pathMatch: 'full' },
- // { path: '**', component: PageNotFoundComponent, data: { title: 'PAGE_NOT_FOUND_PAGE' } }
+ { path: '**', component: PageNotFoundComponent, data: { title: 'PAGE_NOT_FOUND_PAGE' } }
 ];
 
 @NgModule({

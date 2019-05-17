@@ -5,15 +5,15 @@ import { Routes } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from '../material/material.module';
+import { AuthGuard } from '../core/auth.guard';
+import { SharedModule } from '../shared/shared.module';
 
 const userRoute: Routes = [
   {
-    path: '',
+    path: ':id',
     component: UserComponent,
-    data: { title: 'PRODUCT_MANAGE_PAGE' },
-    //  resolve: { product: ProductResolver },
-    // canActivate: [AuthSocialGuard],
-    // canDeactivate: [CanDeactivateGuard]
+    data: { title: 'APP_USER_PAGE' },
+    canActivate: [AuthGuard],
   }
 ];
 
@@ -23,6 +23,7 @@ const userRoute: Routes = [
     CommonModule,
     MaterialModule,
     FlexLayoutModule,
+    SharedModule,
     RouterModule.forChild(userRoute)
 
   ]

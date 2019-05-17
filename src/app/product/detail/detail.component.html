@@ -5,7 +5,7 @@
     fxFlexOrder.xs="1" 
     [fooditem]="fooditem">
   </app-product-card>
-<input appPlaceAutoComplete>
+
   <mat-card fxFlex="0 1 48" fxFlex.lg="0 1 32" fxFlexOrder.xs="2">
     <span class="mat-h2">Payment & Delivery options</span>
     <mat-list>
@@ -17,7 +17,7 @@
         <mat-icon color="primary">payment</mat-icon>
         <h3 mat-line>Pay Online</h3>
       </mat-list-item>
-      <mat-divider style="width:90%; margin-left: 5%"></mat-divider>
+      <mat-divider [inset]=true></mat-divider>
       <!-- <h3>Delivery options</h3> -->
       <mat-list-item *ngIf="fooditem.takeAway">
         <mat-icon color="primary">transfer_within_a_station</mat-icon>

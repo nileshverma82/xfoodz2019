@@ -17,9 +17,10 @@ import { ShellComponent } from './shell/shell.component';
 import { AppCartModule } from './app-cart/app-cart.module';
 import { AuthGuard } from './core/auth.guard';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
-  declarations: [AppComponent, ShellComponent, PageNotFoundComponent],
+  declarations: [AppComponent, ShellComponent, PageNotFoundComponent, HomeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

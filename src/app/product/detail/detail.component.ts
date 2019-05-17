@@ -1,9 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from 'src/app/core/auth.service';
-import { Fooditem } from 'src/app/core/models';
+
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppCartService } from 'src/app/app-cart/app-cart.service';
 import { SnackbarNotificationService } from 'src/app/core/snackbar-notification.service';
+import { Fooditem } from 'src/app/core/models';
 
 @Component({
   selector: 'app-detail',
@@ -34,6 +35,7 @@ export class DetailComponent implements OnInit, OnDestroy {
     switch (action) {
       case 'add':
         console.log('onClickFab: ', action);
+        // const { uid } = await this.auth.getUser(); // TODO
         this.cartService.manageProduct(
           this.auth.currUser.uid,
           this.fooditem

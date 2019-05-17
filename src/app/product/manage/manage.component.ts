@@ -1,12 +1,11 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DialogService } from 'src/app/core/dialog.service';
-import { Fooditem, AppUser } from 'src/app/core/models';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/core/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DbService } from 'src/app/core/db.service';
-import { IGeoInfo } from 'src/app/core/model';
+import { AppUser, Fooditem, IGeoInfo } from 'src/app/core/models';
 
 @Component({
   selector: 'app-manage',

@@ -1,15 +1,8 @@
 import { Injectable } from '@angular/core';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import * as firebase from 'firebase';
-// rxjs imports
 import { BehaviorSubject, Observable } from 'rxjs';
-// local imports
-import { ChatMessage, ChatRoomInfo } from '../core/models';
-import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
-import { AngularFireStorage } from '@angular/fire/storage';
-
-
-
-
+import { ChatMessage } from '../core/models';
 
 const APP_ROOT_COLLECTIONS = {
   PRODUCTS: 'products',
@@ -21,34 +14,22 @@ const APP_ROOT_COLLECTIONS = {
 @Injectable({
   providedIn: 'root'
 })
+
 export class ChatService {
-  private appUserPath: string;
   private chatroomPath: string;
-  private chatMessages: Observable<ChatMessage[]>;
   private chatRoomRef: AngularFirestoreCollection<ChatMessage>;
   FooditemID$: BehaviorSubject<string>;
   chatMessages$: BehaviorSubject<ChatMessage[]>;
-  
-
-
   roomID$: BehaviorSubject<any>;
-
-  ccc: any;
-
   currentChatPath: any;
 
   constructor(
-    private afs: AngularFirestore,
-    private storage: AngularFireStorage,
+    private afs: AngularFirestore
   ) {
     // afs.firestore.settings({ timestampsInSnapshots: true });
     this.FooditemID$ = new BehaviorSubject(null);
-
-    this.appUserPath = APP_ROOT_COLLECTIONS.USERS;
     this.chatroomPath = APP_ROOT_COLLECTIONS.CHATS;
-
     this.chatRoomRef = this.createFirestoreCollectionRef(APP_ROOT_COLLECTIONS.CHATS);
-
   }
 
   createFirestoreCollectionRef(collectionPath: string): AngularFirestoreCollection<any> {
@@ -63,7 +44,7 @@ export class ChatService {
     return firebase.firestore.FieldValue.serverTimestamp();
   }
 
-  async createChatMessages( message: ChatMessage, roomID: string) {
+  async createChatMessages(message: ChatMessage, roomID: string) {
     const batch = this.afs.firestore.batch();
     message.msgCreatedAt = this.serverTimestampFromFirestore;
     const roomRef = this.afs.firestore.collection(APP_ROOT_COLLECTIONS.CHATS).doc(roomID).collection('conversation').doc();
@@ -99,28 +80,3 @@ export class ChatService {
   }
 
 }
-  // getRoomID(fooditem: Fooditem): Observable<any[]> {
-  //   const fooditemId = fooditem.id;
-  //   return this.afs.collection<any>('appchats', ref => ref.where('fooditemID', '==', fooditemId)).valueChanges();
-  // }
-
-  // getSellerMessages(fooditem: Fooditem): Observable < any > {
-  //  const sellerId = fooditem.createdBy;
-  //  const fooditemId = fooditem.id;
-  //   console.log('seller id from Chatservice', sellerId);
-
-  //   return this.afs.collection<any>('appchats').valueChanges().pipe(
-  //     flatMap(res => res),
-  //     filter(item => item.fooditemID === fooditemId),
-  //     switchMap(s => {
-  //       console.log('seller filtered data', s);
-  //       this.currentChatPath = `${s.roomID}`;
-  //       console.log('this.currentChatPath: ', this.currentChatPath);
-  //       this.roomID$ = this.currentChatPath;
-  //       return this.chatRoomRef.doc(s.roomID).collection('conversation', ref => ref.orderBy('msgCreatedAt')).valueChanges();
-  //     }
-  //     )
-  //   );
-  // }
-
-

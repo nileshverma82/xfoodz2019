@@ -8,3 +8,10 @@ Application Cart data-Model:
 app-cart/<buyer-id>/orders/<seller-id>/items/<fooditem-id>
 
 Order-History: Move all completed and cancelled orders to history, with an option of reorder, if the item still exist in the list.
+
+1. Sign-In with google.
+2. Store data returned by google provider -
+    displayName
+    PhotoURL
+3. Gather user about info...
+4. Confirm user address...

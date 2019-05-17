@@ -2,10 +2,11 @@
   <mat-list>
     <mat-list-item 
       *ngFor="let msg of chatMessages$|async">
-      <h3 matLine [align]="msg.createdByUserId == this.authService.currUser.uid? 'right':'left'"> {{msg.message}} </h3>
-      <!-- <p matLine align="right"> -->
-        <!-- <span> {{msg.createdByUserId}} </span> -->
-      <!-- </p> -->
+      <h3 
+        matLine 
+        [align]="msg.createdByUserId == this.authService.currUser.uid? 'right':'left'">
+        {{msg.message}}
+      </h3>
     </mat-list-item>
   </mat-list>
 
@@ -18,12 +19,3 @@
 </mat-form-field>
 
 </mat-card>
-
-<!-- <div class="bottom" id="bottom" *ngIf="true" fxLayout="row" fxLayoutAlign="start center">
-  <textarea class="input" id="message-text-input" fxFlex title="New message text" [(ngModel)]="inputMessageText"
-    (keydown.enter)="setupChatRoom($event)">
-  </textarea>
-
-  <button mat-icon-button class="send" [disabled]="!inputMessageText" (click)="setupChatRoom($event)">
-    <mat-icon>send</mat-icon>
-  </button> -->

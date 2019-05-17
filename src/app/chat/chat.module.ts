@@ -14,7 +14,7 @@ const chatRoute: Routes = [
     path: ':id',
     component: ChatComponent,
     data: { title: 'APP_CHAT_PAGE' },
-    resolve: { order: OrderResolver },
+    // resolve: { order: OrderResolver },
     canActivate: [AuthGuard],
   }
 ];

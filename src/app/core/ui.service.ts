@@ -53,6 +53,9 @@ export class UIService {
 
   setPageLayout(routerData: any) {
     switch (routerData.title) {
+      case 'APP_HOME_PAGE':
+        this.appToolBar$.next({ pageTitle: 'Foodz9', showSideNavToggleIcon: true });
+        break;
       case 'PRODUCT_LIST_PAGE':
         this.appToolBar$.next(this.defaultToolbar);
         break;
@@ -92,9 +95,9 @@ export class UIService {
           pageTitle: `${routerData.order.seller.name}`,
           showCancelIcon: true });
         break;
-      case 'USER_PAGE':
+      case 'APP_USER_PAGE':
         this.appToolBar$.next({
-          pageTitle: 'User Profile',
+          pageTitle: 'Account Info',
           showCancelIcon: true
         });
         break;

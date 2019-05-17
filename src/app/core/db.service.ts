@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import * as firebase from 'firebase/app';
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import { first, switchMap, tap } from 'rxjs/operators';
-import { AppUser, Fooditem } from './models';
+import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
+import { first, switchMap, tap, catchError, shareReplay } from 'rxjs/operators';
+import { AppUser } from './models';
+import { Fooditem } from './models';
 import { SnackbarNotificationService } from './snackbar-notification.service';
 
 export interface Filter {
   orderType?: string;
-  isNonVeg?: string;
+  isNonVeg?: boolean;
   cuisine?: string;
   category?: string;
 }
@@ -54,7 +55,7 @@ export class DbService {
             query = query.where('orderType', '==', filter.orderType);
           }
           if (filter.isNonVeg != null) {
-            query = query.where('isNonVeg', '==', filter.isNonVeg === 'Non-Veg');
+            query = query.where('isNonVeg', '==', filter.isNonVeg);
           }
           if (filter.cuisine != null) {
             query = query.where('cuisine', '==', filter.cuisine);
@@ -64,7 +65,12 @@ export class DbService {
           }
           return query;
         }).valueChanges()
-      ));
+      ),
+      shareReplay(),
+      catchError( e => {
+        console.error(e);
+        return throwError(e);
+      }));
   }
 
   applyFilter(filter: Filter) {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Input } from '@angular/core';
-import { Fooditem } from 'src/app/core/model';
+import { Fooditem } from 'src/app/core/models';
 
 @Component({
   selector: 'app-product-card',

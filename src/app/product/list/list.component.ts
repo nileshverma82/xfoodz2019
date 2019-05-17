@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { DbService, Filter } from 'src/app/core/db.service';
-import { Fooditem } from 'src/app/core/model';
+import { Fooditem } from 'src/app/core/models';
 
 @Component({
   selector: 'app-list',

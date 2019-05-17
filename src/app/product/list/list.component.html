@@ -3,7 +3,7 @@
     <mat-chip *ngIf="filter.orderType">{{filter.orderType}}
       <mat-icon matChipRemove (click)="removeOrderTypeFilter()">cancel</mat-icon>
     </mat-chip>
-    <mat-chip *ngIf="filter.isNonVeg">{{filter.isNonVeg}}
+    <mat-chip *ngIf="filter.isNonVeg!=null">{{filter.isNonVeg?'NonVeg':'Veg'}}
       <mat-icon matChipRemove (click)="removeIsNonVegFilter()">cancel</mat-icon>
     </mat-chip>
     <mat-chip *ngIf="filter.category">{{filter.category}}

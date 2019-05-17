@@ -38,8 +38,8 @@ export interface AppUser {
     geoInfo?: IGeoInfo;
     address?: string;
     photoURL?: string;
-    email?: string;
-    phoneNumber?: string;
+    // email?: string;
+    // phoneNumber?: string;
     providerId?: string;
     isSeller?: boolean;
     isBuyer?: boolean;

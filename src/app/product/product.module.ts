@@ -37,8 +37,8 @@ const productRoutes: Routes = [
   {
     path: '',
     component: ListComponent,
-    data: { title: 'PRODUCT_LIST_PAGE' }
-    // canActivate: [AuthGuard]
+    data: { title: 'PRODUCT_LIST_PAGE' },
+    canActivate: [AuthGuard]
     // resolve: { products: ProductListResolver}
   }
 ];
